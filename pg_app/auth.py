@@ -1,3 +1,5 @@
+import functools
+
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -15,13 +17,45 @@ def login():
         password = request.form['password']
         auth_hash: Authentication = (Authentication(password))
         user = dao_membre.gethash(auth_hash.hash_password())
-        print(user)
 
-        if user == ():
+        if user is None:
             error = 'Incorrect username.'
+
         else:
-            return redirect(url_for('blog.index'))
+            session.clear()
+            session['user_id'] = user['id_membre']
+            return redirect(url_for('president-menu.index'))
 
         flash(error)
 
     return render_template('auth/login.html')
+
+
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
+
+
+@bp.before_app_request
+def load_logged_in_user():
+    user_id = session.get('user_id')
+    print(f" ICI {user_id}")
+
+    if user_id is None:
+        g.user = None
+    else:
+
+        g.user = dao_membre.read(user_id)[0]
+        print(f"NOM : {g.user}")
+
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+
+        return view(**kwargs)
+
+    return wrapped_view

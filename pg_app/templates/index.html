@@ -8,6 +8,7 @@
     <title>Flask</title>
 </head>
 <body>
+{% block nav %}
 <nav>
     <div><img src="{{ url_for('static', filename='img/selection-prix.png') }}" width="240" height="240"
               alt="Prix Goncourt"></div>
@@ -16,6 +17,13 @@
         <a href="{{ url_for('auth.login') }}">Log In</a>
     </div>
 </nav>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+
+{% block content %}
 <main>
     {% for livre in livres %}
 
@@ -35,6 +43,7 @@
     </div>
 
     {% endfor %}
+    {% endblock %}
 </main>
 
 

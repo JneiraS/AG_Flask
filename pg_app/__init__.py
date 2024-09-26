@@ -4,18 +4,21 @@ from pg_app.src.utils.factories import initialize_database_in_threads
 from pg_app.src.models.livre import Livre
 from pg_app.src.models.editeur import Editeur
 
-from . import auth
-from . import member
+from . import auth_app
+from . import member_app
 
 
 def create_app():
+    """
+    Fonction qui permet de creer l'application
+    """
     app = Flask(__name__)
 
     app.secret_key = 'U2FsdGVkX1+H7ODzq10448prts5ZjZs0zYZyQwNzv2ClgXQH8hwXiZ8y4BRryyC3'
 
     initialize_database_in_threads()
-    app.register_blueprint(auth.bp)
-    app.register_blueprint(member.bp)
+    app.register_blueprint(auth_app.bp)
+    app.register_blueprint(member_app.bp)
 
     @app.route("/")
     def home():

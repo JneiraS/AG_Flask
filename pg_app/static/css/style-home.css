@@ -88,14 +88,6 @@ main {
   transition: all .6s ease-in-out;
 }
 
-/*
- * L'effet de survol des conteneurs des livres
- */
-.livre-container:hover {
-  transform: translate(2px, -2px);
-  box-shadow: 0 0 10px rgba(0,0,0,0.24), 0 5px 5px rgba(0,0,0,0.19);
-  transition: all .3s ease-in-out;
-}
 
 /*
  * Le titre des livres

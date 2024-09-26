@@ -1,15 +1,13 @@
-# -*- coding: utf-8 -*-
-
 import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    flash, g, redirect, render_template, request, session, url_for
 )
 
+from . import bp
 from pg_app.src.dao.membre_jury_dao import MembresJuryDAO
 from pg_app.src.utils.auth import Authentication
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
 dao_membre = MembresJuryDAO()
 
 
@@ -60,6 +58,7 @@ def login_required(view):
     Si l'utilisateur n'est pas connecté, il est redirigé vers la page de connexion.
     Sinon, la vue d'origine est appelée.
     """
+
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:

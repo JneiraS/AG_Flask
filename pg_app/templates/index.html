@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <title>Flask</title>
+</head>
+<body>
+{% block nav %}
+<nav>
+    <div><img src="{{ url_for('static', filename='img/selection-prix.png') }}" width="240" height="240"
+              alt="Prix Goncourt"></div>
+    <div class=" lower-nav">
+        <h1>Prix Goncourt 2024</h1>
+        <a href="{{ url_for('auth.login') }}">Log In</a>
+    </div>
+</nav>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+
+{% block content %}
+<main>
+    {% for livre in livres %}
+
+    <div class="livre-container">
+        <p class="livre-title">{{ livre.title }}</p>
+        <p class="auteur">de {{ livre.auteur }} | Edition {{ livre.editeur }}</p>
+        <p class="summary">{{ livre.summary }}</p>
+        <div class="infos-container">
+
+            <p class="infos"><strong>Date de publication: </strong> {{ livre.publication_date }}</p>
+            <p class="infos"><strong>ISBN: </strong> {{ livre.isbn }}</p>
+            <p class="infos"><strong>Prix: </strong> {{ livre.price }}€</p>
+            <a href="https://www.amazon.fr/s?k={{ livre.isbn }}"><img class="amazon-icon"
+                                                                      src="{{ url_for('static', filename='img/amazon.png') }}"
+                                                                      alt="achat sur amazon"></a>
+        </div>
+    </div>
+
+    {% endfor %}
+    {% endblock %}
+</main>
+
+
+<script src="{{ url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>

@@ -2,15 +2,14 @@
 
 
 from flask import (
-    render_template, request
+    render_template, request, redirect, url_for, flash
 )
 
 from pg_app.auth_app.routes import login_required
+from pg_app.member_app.funcs import confirm_vote, render_votes_results
+from pg_app.src.dao.appartient_dao import AppartientDAO
 from . import bp
-from .. import Livre
-from ..src.dao.appartient_dao import AppartientDAO
-from ..src.dao.vote_dao import VoteDAO
-from .froms import RoundvoteRadioForm
+from .froms import RoundvoteRadioForm, DefineWinnerForm
 
 
 @bp.route('/president-menu', methods=['POST', 'GET'])
@@ -22,33 +21,36 @@ def index():
     Il est nécessaire d'être authentifié pour y accéder.
     :return: Le template du menu du président
     """
+    dao_appartient: AppartientDAO = AppartientDAO()
+    liste_originale: list[int] = dao_appartient.query_database(
+        "SELECT id_livre FROM `appartient` WHERE `id_selection` = 3")
+    liste_id = [livre['id_livre'] for livre in liste_originale]
+    actual_round: int = dao_appartient.get_current_round()
     form = RoundvoteRadioForm()
-
+    form1 = DefineWinnerForm(liste_id) if actual_round == 3 else None
     html = 'member/index.html'
+
     if form.validate_on_submit():
         round_vote = form.round_vote.data
-        print(type(round_vote))
         length_of_selection: int = 8 if round_vote == '2' else 4
-
         vote_results: list[dict] = render_votes_results(int(round_vote), length_of_selection)
-        return render_template('%s' % html, results=vote_results, form=form)
+        print(vote_results)
+        return render_template('%s' % html, results=vote_results, form=form, form1=form1,
+                               actual_round=actual_round)
 
-    return render_template(html, form=form)
+    return render_template(html, form=form, form1=form1, actual_round=actual_round)
 
 
 @bp.route('/president-menu/confirmation', methods=['POST'])
 @login_required
-def fonfirmation():
+def confirmation():
     """Confirme les résultats affichés"""
     if request.method == 'POST':
         try:
-            # Vérifier la confirmation
             confirmation = request.form.get('confirmation')
 
             if confirmation is not None:
-                # Récupérer les résultats du formulaire sous forme de liste de dictionnaires
                 id_livres = []
-
                 # Récupérer tous les clés de la MultiDict
                 for key in request.form.keys():
                     # Vérifier si la clé correspond à un id_livre
@@ -56,45 +58,23 @@ def fonfirmation():
                         # Extraire l'id_livre et l'ajouter à la liste
                         id_livre = request.form[key]
                         id_livres.append(int(id_livre))
-                confirm_vote(id_livres)
+                if confirm_vote(id_livres):
+                    flash("Les résultats ont été confirmés et enregistrés avec succès.", "success")
+                else:
+                    flash("Erreur lors de la confirmation des résultats.", "error")
 
-                return "Confirmation reçue avec les résultats", 200
-
+                return redirect(url_for('president-menu.index'))
         except UnicodeDecodeError:
             return "Erreur d'encodage dans les résultats soumis", 400
-
     return render_template('member/index.html')
 
 
-def confirm_vote(results_list: list[int]):
-    """
-    Ajoute tous les livres d'une liste à une selection.
+@bp.route('/president-menu/define-winner', methods=['POST'])
+def define_winner():
+    form1 = DefineWinnerForm()
 
-    :param results_list:
-    :return:
-    """
-    dao_appartient = AppartientDAO()
-    current_round = dao_appartient.get_current_round()
-    print(f" tour actuel: {current_round}")
+    if form1.validate_on_submit():
+        winner_id = form1.winner.data
+        print(winner_id)
 
-    for book in results_list:
-        if dao_appartient.insert_book_to_selection(book, current_round + 1) is None:
-            return False
-        else:
-            continue
-    return True
-
-
-def render_votes_results(round_vote: int, length_of_selection: int) -> list[dict]:
-    """Renvoie les résultats des votes pour une sélection."""
-    dao_vote = VoteDAO()
-    vote_results = dao_vote.get_voting_results_for(round_vote, length_of_selection)
-    books = Livre.book_list
-
-    for result in vote_results:
-        for book in books:
-            if result["id_livre"] == book.id:
-                result["title"] = book.title
-                break
-
-    return vote_results
+    return render_template('member/index.html')

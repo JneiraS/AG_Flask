@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, render_template
 
 from pg_app.src.utils.factories import initialize_database_in_threads

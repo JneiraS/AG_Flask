@@ -1,5 +1,6 @@
 @import url("style-home.css");
 @import url("style-auth.css");
+@import url("style-member.css");
 
 :root {
   --main-color: #C9C3AB;
@@ -19,9 +20,3 @@
 body {
   background-color: var(--main-color);
 }
-
-
-section .content {
-  background-color: blue;
-}
-

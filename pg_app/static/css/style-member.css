@@ -1,0 +1,117 @@
+:root {
+  --main-color: #C9C3AB; /* Couleur de fond de la page */
+  --nav-color: #C9200A; /* Couleur de la barre de navigation */
+  --grey-color: #585563; /* Couleur des conteneurs des livres */
+  --with-livre-container: 20%; /* Largeur des conteneurs des livres */
+}
+
+.member-nav{
+    background-color: var(--grey-color);
+    height: fit-content;
+    z-index: 2;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 40px 10px 40px;
+}
+
+.member-nav span{
+    color: rgba(255, 255, 255, 0.699);}
+
+.member-nav li{
+    list-style: none;
+    padding: 5px 15px ;
+    border-radius: 1em;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    transition: all .3s;
+    color: white;
+}
+
+.member-nav li:hover{
+    background-color: var(--nav-color);
+    transition: all .3s;
+}
+
+
+.member-main{
+display: flex;
+flex-direction: column;
+  padding: 30px;
+}
+
+.member-menu-card{
+    display: flex;
+    padding: 20px;
+   gap: 50px;
+    background-color: var(--grey-color); 
+    align-items: center;
+    border-radius: 1em;
+  }
+
+.login-container form{display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  border-radius: 1em;
+  padding: 10px;}
+
+
+.member-menu-card form{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    border-radius: 1em;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    transition: all .3s;
+}
+
+.member-menu-card form:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all .3s;
+}
+
+.member-menu-card form li{
+list-style: none;
+}
+
+
+.books-selection li{
+  list-style: none;
+  margin: 5px;
+  border-radius: 1em;
+  border: #fdfdfd 2px solid;
+  padding: 5px 15px ;
+  background-color: var(--grey-color);
+}
+
+#round_vote{
+font-size: .9em;
+margin: 5px;
+padding:5px
+}
+
+ul li.success{
+    list-style: none;
+  background-color: white;
+    color: green;
+    padding: 3px;
+    margin: 5px;
+    border-radius: 1em;
+}
+
+ul li.error{
+    list-style: none;
+    background-color: white;
+    color: red;
+    padding: 3px;
+    margin: 5px;
+    border-radius: 1em;
+}
+
+

@@ -44,12 +44,11 @@ def logout():
 def load_logged_in_user():
     """Permet de charger l'utilisateur connecté s'il est connecté."""
     user_id = session.get('user_id')
-
     if user_id is None:
         g.user = None
-
     else:
-        g.user = dao_membre.read(user_id)[0]
+        user = dao_membre.read(user_id)
+        g.user = user[0] if user else None
 
 
 def login_required(view):

@@ -22,7 +22,6 @@ nav {
   align-items: center;
   padding: 10px;
   background-color: var(--nav-color);
-  align-items: end;
   margin-bottom: 2em;
 }
 
@@ -33,8 +32,7 @@ nav div img{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  display: block;
-  margin: auto;
+
 }
 
 /*
@@ -110,10 +108,10 @@ main {
 
 .summary{
   background-color: #00000015;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 10px;
   line-height: 1.15;
-  padding: 15px;
+
   color: #ebebeb;
   text-align: justify;
 }
@@ -129,11 +127,14 @@ main {
   margin:20px ;
 }
 
-.infos-container a {
+.infos-container div {
   font-size: small;
   position: absolute;
-  filter: invert(100%);
-  right: 15px;
+  right: 10px;
   bottom: 10px;
-  opacity: 50%;
+  opacity: 70%;
+}
+
+.infos-container div .amazon-icon  {
+  filter: invert(100%);
 }

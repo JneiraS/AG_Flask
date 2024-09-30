@@ -1,0 +1,63 @@
+/* La fenetre de connexion */
+.login-container{
+    background-color: var(--livres-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    width: fit-content;
+    border-radius: .5em; ;
+}
+
+/* Le lien vers la page d'inscription */
+.login-container a {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-size: smaller;
+    bottom: .5em;
+    color: #ffffff7a;
+    border: 1px solid rgba(255, 255, 255, 0.178);
+    padding: 5px 15px ;
+    border-radius: 1em;
+}
+
+/* Le label de formulaire */
+.login-container label{
+    font-size:.9em;
+}
+
+/* Les champs de formulaire */
+input[type="submit"],
+input[type="password"]{
+
+    background: none;
+    border: none;
+}
+
+input[type="password"]{
+    background: #00000036;
+    padding: .3em;
+    margin: 1em;
+}
+
+input[type="submit"]{
+
+    border: 1px solid rgba(255, 255, 255, 0.178);
+    background-color: var(--nav-color);
+    color: rgba(255, 255, 255, 0.932);
+    padding: 5px 15px ;
+    border-radius: 1em;
+    transition: all .3s;
+}
+
+/* Lorsque l'utilisateur passe la souris sur le bouton de connexion */
+input[type="submit"]:hover{
+    background-color: rgba(255, 255, 255, 0.932);
+    color: white;
+    transition: all .3s;
+}

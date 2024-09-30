@@ -1,0 +1,28 @@
+@import url("style-home.css");
+@import url("style-auth.css");
+@import url("style-member.css");
+
+:root {
+  --main-color: #C9C3AB;
+  --nav-color: #C9200A;
+  --livres-color: #585563;
+  --with-livre-container: 20%;
+}
+
+* {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+body {
+  background-color: var(--main-color);
+}
+
+
+section .content {
+  background-color: blue;
+}
+

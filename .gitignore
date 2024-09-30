@@ -1,0 +1,15 @@
+.idea/encodings.xml
+# Default ignored files
+/shelf/
+/workspace.xml
+# PyCharm
+# --------------------
+# https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+*.iml
+*.ipr
+*.iws
+.idea/
+*.pyc
+*.py~
+*.html~
+**/display

@@ -1,0 +1,86 @@
+2024-09-27 13:33:26 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 13:36:47 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 13:40:28 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 13:40:54 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 13:40:54 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 13:43:11 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 13:44:43 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`goncourt`.`appartient`, CONSTRAINT `appartient_ibfk_2` FOREIGN KEY (`id_selection`) REFERENCES `selection` (`id_selection`) ON DELETE CASCADE)')
+2024-09-27 13:44:56 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`goncourt`.`appartient`, CONSTRAINT `appartient_ibfk_2` FOREIGN KEY (`id_selection`) REFERENCES `selection` (`id_selection`) ON DELETE CASCADE)')
+2024-09-27 13:46:49 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 13:46:50 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 13:46:50 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'settimeout'
+2024-09-27 13:47:00 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`goncourt`.`appartient`, CONSTRAINT `appartient_ibfk_2` FOREIGN KEY (`id_selection`) REFERENCES `selection` (`id_selection`) ON DELETE CASCADE)')
+2024-09-27 13:48:43 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 13:48:47 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`goncourt`.`appartient`, CONSTRAINT `appartient_ibfk_2` FOREIGN KEY (`id_selection`) REFERENCES `selection` (`id_selection`) ON DELETE CASCADE)')
+2024-09-27 13:49:22 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`goncourt`.`appartient`, CONSTRAINT `appartient_ibfk_2` FOREIGN KEY (`id_selection`) REFERENCES `selection` (`id_selection`) ON DELETE CASCADE)')
+2024-09-27 13:49:22 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 13:49:49 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`goncourt`.`appartient`, CONSTRAINT `appartient_ibfk_2` FOREIGN KEY (`id_selection`) REFERENCES `selection` (`id_selection`) ON DELETE CASCADE)')
+2024-09-27 14:07:27 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:09:40 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:10:14 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:10:52 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:12:12 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:31:25 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:32:33 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:32:33 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:34:51 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:36:40 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:37:21 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:37:21 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:47:45 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:47:46 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:47:46 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'settimeout'
+2024-09-27 14:47:46 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:51:42 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:55:00 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:55:07 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:56:18 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:56:22 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:58:43 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 14:58:45 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:11:32 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:16:49 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:20:04 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:30:48 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:33:50 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:33:54 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:34:35 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:34:35 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:34:58 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:36:39 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:42:28 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:42:28 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 15:45:41 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:02:23 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:02:23 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:06:17 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:08:34 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:15:05 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:15:08 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:30:15 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:30:15 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:35:02 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:39:03 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:39:23 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:40:07 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:41:17 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:41:25 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:42:46 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:43:15 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:43:35 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:43:40 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:46:43 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:46:43 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:46:43 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'settimeout'
+2024-09-27 16:46:45 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:46:53 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 16:59:04 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-27 17:07:15 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 10:18:51 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 10:24:03 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 10:40:31 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 10:44:22 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 10:44:27 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 10:49:30 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 10:51:22 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 10:51:22 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first

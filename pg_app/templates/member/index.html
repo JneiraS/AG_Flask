@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+
+{% block nav %}
+<nav class="member-nav">
+    <span>{{ g.user['nom']|upper }}</span>
+    <ul>
+        {% if g.user %}
+        <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+            {% endif %}
+    </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+<main class="member-main">
+    {% if g.user['role'] == "Membre" %}
+    <h1>MENU DES MEMBRES</h1>
+    {% else %}
+    <div class="member-menu-card">
+        <p>Pour quel tour souhaitez-vous voir les résultats :</p>
+
+        <form method="post" action="{{ url_for('president-menu.index') }}">
+            {{ form.hidden_tag() }}
+            {{ form.round_vote.label }} {{ form.round_vote }}
+            {{ form.submit }}
+        </form>
+    </div>
+
+    {% if results %}
+    <ul class="books-selection">
+        {% for result in results %}
+            <li>Id: {{ result.id_livre }} - {{ result.title }} - {{ result.nombre_de_votes }} votes</li>
+        {% endfor %}
+    </ul>
+    <form method="post" action="{{ url_for('president-menu.confirmation') }}">
+        <input type="hidden" name="confirmation" value="1" />
+        {% for result in results %}
+            <input type="hidden" name="results[{{ loop.index0 }}][id_livre]" value="{{ result.id_livre }}" />
+        {% endfor %}
+        <input type="submit" value="Confirmer les résultats" />
+    </form>
+    {% endif %}
+
+    <div class="member-menu-card">
+        <p>Définir le gagnant :</p>
+        <form method="post" action="{{ url_for('president-menu.index') }}">
+            {{ form1.hidden_tag() }}
+            {{ form1.winner.label }} {{ form1.winner }}
+            {{ form1.submit }}
+        </form>
+    </div>
+
+    
+    {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul>
+        {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+
+
+
+
+
+
+</main>
+{% endblock %}

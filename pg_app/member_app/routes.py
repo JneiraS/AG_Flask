@@ -62,19 +62,18 @@ def index():
 def confirmation():
     """Confirme les résultats affichés"""
     if request.method == 'POST':
-        try:
-            confirmation_form: str | None = request.form.get('confirmation')
+       
+        confirmation_form: str | None = request.form.get('confirmation')
 
-            if confirmation_form is not None:
-                id_livres = get_ids_from_request()
-                if confirm_vote(id_livres):
-                    flash("Les résultats ont été confirmés et enregistrés avec succès.", "success")
-                else:
-                    flash("Erreur lors de la confirmation des résultats.", "error")
+        if confirmation_form is not None:
+            id_livres = get_ids_from_request()
+            if confirm_vote(id_livres):
+                flash("Les résultats ont été confirmés et enregistrés avec succès.", "success")
+            else:
+                flash("Erreur lors de la confirmation des résultats.", "error")
 
-                return redirect(url_for('president-menu.index'))
-        except UnicodeDecodeError:
-            return "Erreur d'encodage dans les résultats soumis", 400
+            return redirect(url_for('president-menu.index'))
+
     return render_template(TEMPLATE_MEMBER_INDEX)
 
 

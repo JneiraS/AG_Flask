@@ -1,0 +1,140 @@
+/*
+ * La racine de la page
+ */
+:root {
+  --main-color: #C9C3AB; /* Couleur de fond de la page */
+  --nav-color: #C9200A; /* Couleur de la barre de navigation */
+  --livres-color: #585563; /* Couleur des conteneurs des livres */
+  --with-livre-container: 20%; /* Largeur des conteneurs des livres */
+}
+
+/*
+ * La barre de navigation
+ */
+nav {
+  position: sticky;
+  top: -250px;
+  height: 300px;
+  z-index: 2;
+  display: block;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--nav-color);
+  margin-bottom: 2em;
+}
+
+/*
+ * Le logo de la barre de navigation
+ */
+nav div img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+/*
+ * La partie inférieure de la barre de navigation
+ */
+.lower-nav {
+  margin-top: .7em;
+  margin-left: 2em;
+  margin-right: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lower-nav a {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 5px 15px ;
+  border-radius: 1em;
+  transition: all .3s;
+}
+
+.lower-nav a:hover {
+  background-color: rgba(255, 255, 255);
+  color: var(--nav-color);
+  transition: all .3s;
+}
+
+/*
+ * Le conteneur principal de la page
+ */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--main-color);
+  justify-content: center;
+  align-items: center;
+}
+
+/*
+ * Les conteneurs des livres
+ */
+.livre-container {
+  position: relative;
+  background-color: var(--livres-color);
+  width: var(--with-livre-container);
+  margin: 20px;
+  padding: 15px;
+  flex-wrap: wrap;
+  border-radius: .4em;
+  border: 1px solid rgba(255, 255, 255, 0.507);
+  transition: all .6s ease-in-out;
+}
+
+
+/*
+ * Le titre des livres
+ */
+.livre-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+  background-color: transparent;
+}
+
+/*
+ * Les informations des livres
+ */
+.auteur {
+  margin-bottom: 10px;
+  padding-bottom: 10px  ;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  opacity: 50%;
+}
+
+.summary{
+  background-color: #00000015;
+  padding: 10px;
+  margin-bottom: 10px;
+  line-height: 1.15;
+
+  color: #ebebeb;
+  text-align: justify;
+}
+
+.infos{
+  position: relative;
+  margin: 5px;
+  margin: .5em;
+}
+
+.infos-container {
+  bottom: 0;
+  margin:20px ;
+}
+
+.infos-container div {
+  font-size: small;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  opacity: 70%;
+}
+
+.infos-container div .amazon-icon  {
+  filter: invert(100%);
+}

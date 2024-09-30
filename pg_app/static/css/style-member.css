@@ -95,3 +95,23 @@ font-size: .9em;
 margin: 5px;
 padding:5px
 }
+
+ul li.success{
+    list-style: none;
+  background-color: white;
+    color: green;
+    padding: 3px;
+    margin: 5px;
+    border-radius: 1em;
+}
+
+ul li.error{
+    list-style: none;
+    background-color: white;
+    color: red;
+    padding: 3px;
+    margin: 5px;
+    border-radius: 1em;
+}
+
+

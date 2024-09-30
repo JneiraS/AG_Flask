@@ -1,4 +1,12 @@
 /* La fenetre de connexion */
+:root {
+  --main-color: #C9C3AB; /* Couleur de fond de la page */
+  --nav-color: #C9200A; /* Couleur de la barre de navigation */
+  --livres-color: #585563; /* Couleur des conteneurs des livres */
+  --with-livre-container: 20%; /* Largeur des conteneurs des livres */
+}
+
+
 .login-container{
     background-color: var(--livres-color);
     display: flex;

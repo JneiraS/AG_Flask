@@ -29,16 +29,32 @@ def index():
     liste_id = [livre['id_livre'] for livre in liste_originale]
     actual_round: int = dao_appartient.get_current_round()
     form = RoundvoteRadioForm()
-    form1 = DefineWinnerForm(liste_id) if actual_round == 3 else None
+    form1 = DefineWinnerForm(liste_id)
 
     if form.validate_on_submit():
         round_vote = form.round_vote.data
         length_of_selection: int = 8 if round_vote == '2' else 4
         vote_results: list[dict] = render_votes_results(int(round_vote), length_of_selection)
-        return render_template('%s' % TEMPLATE_MEMBER_INDEX, results=vote_results, form=form, form1=form1,
+        return render_template(TEMPLATE_MEMBER_INDEX, results=vote_results, form=form, form1=form1,
                                actual_round=actual_round)
+    
+    dao_appartient = AppartientDAO()
+    
+    if form1.validate_on_submit():
+        winner_id = form1.winner.data
+        if winner_id:
+            print(f"Le gagnant sélectionné a l'ID : {winner_id}")
+            flash(f"Le gagnant avec l'ID {winner_id} a été sélectionné.", "success")
+            # Ajoutez ici le traitement pour le gagnant
+            dao_appartient.insert_book_to_selection(winner_id, 4)
+
+        else:
+            flash("Aucun gagnant n'a été sélectionné.", "error")
+        return redirect(url_for('president-menu.index'))
 
     return render_template(TEMPLATE_MEMBER_INDEX, form=form, form1=form1, actual_round=actual_round)
+
+ 
 
 
 @bp.route('/president-menu/confirmation', methods=['POST'])
@@ -73,14 +89,3 @@ def get_ids_from_request():
             id_livre = request.form[key]
             id_livres.append(int(id_livre))
     return id_livres
-
-
-# @bp.route('/president-menu/define-winner', methods=['POST'])
-# def define_winner():
-#     form1 = DefineWinnerForm()
-#
-#     if form1.validate_on_submit():
-#         winner_id = form1.winner.data
-#         print(winner_id)
-#
-#     return render_template(TEMPLATE_MEMBER_INDEX)

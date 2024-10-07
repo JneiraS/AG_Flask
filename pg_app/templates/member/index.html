@@ -29,28 +29,30 @@
     {% if results %}
     <ul class="books-selection">
         {% for result in results %}
-            <li>Id: {{ result.id_livre }} - {{ result.title }} - {{ result.nombre_de_votes }} votes</li>
+        <li><strong>{{ result.id_livre }}. </strong> {{ result.title }} - {{ result.nombre_de_votes }}
+            votes
+        </li>
         {% endfor %}
     </ul>
     <form method="post" action="{{ url_for('president-menu.confirmation') }}">
-        <input type="hidden" name="confirmation" value="1" />
+        <input type="hidden" name="confirmation" value="1"/>
         {% for result in results %}
-            <input type="hidden" name="results[{{ loop.index0 }}][id_livre]" value="{{ result.id_livre }}" />
+        <input type="hidden" name="results[{{ loop.index0 }}][id_livre]" value="{{ result.id_livre }}"/>
         {% endfor %}
-        <input type="submit" value="Confirmer les résultats" />
+        <input type="submit" value="Confirmer les résultats"/>
     </form>
     {% endif %}
 
     <div class="member-menu-card">
         <p>Définir le gagnant :</p>
         <form method="post" action="{{ url_for('president-menu.index') }}">
-            {{ form1.hidden_tag() }}
-            {{ form1.winner.label }} {{ form1.winner }}
-            {{ form1.submit }}
+            {{ define_winner_form.hidden_tag() }}
+            {{ define_winner_form.winner.label }} {{ define_winner_form.winner }}
+            {{ define_winner_form.submit }}
         </form>
     </div>
 
-    
+
     {% endif %}
 
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -62,11 +64,6 @@
     </ul>
     {% endif %}
     {% endwith %}
-
-
-
-
-
 
 
 </main>

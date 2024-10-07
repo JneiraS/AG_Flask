@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:https="http://www.w3.org/1999/xhtml">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +10,17 @@
 <body>
 {% block nav %}
 <nav>
-    <div><img src="{{ url_for('static', filename='img/selection-prix.png') }}" width="240" height="240"
-              alt="Prix Goncourt"></div>
+    <div><a href="{{ url_for('home') }}"><img
+            src="{{ url_for('static', filename='img/selection-prix.png') }}" width="240" height="240"
+            alt="Prix Goncourt"></a></div>
     <div class=" lower-nav">
         <h1>Prix Goncourt 2024</h1>
+
+
+        <a href="{{ url_for('home') }}">Voir la liste initial</a>
+        <a href="{{ url_for('seconde_selection') }}">Voir la premiere sélection</a>
+        <a href="{{ url_for('troisieme_selection') }}">Voir la deuxième sélection</a>
+
         <a href="{{ url_for('auth.login') }}">Log In</a>
     </div>
 </nav>
@@ -22,9 +29,18 @@
 {% block header %}
 {% endblock %}
 
-
 {% block content %}
+
+{% if livres|length <= 4 %}
+<p class="selections">DEUXIEME SELECTION</p>
+{% elif 5 < livres|length <= 8 %}
+<p class="selections">PREMIERE SELECTION</p>
+{% else %}
+<p class="selections">LISTE INITIALE</p>
+{% endif %}
 <main>
+
+
     {% for livre in livres %}
 
     <div class="livre-container">
@@ -33,20 +49,29 @@
         <p class="summary">{{ livre.summary }}</p>
         <div class="infos-container">
 
-            <p class="infos"><strong>Date de publication: </strong> {{ livre.publication_date }}</p>
+            <p class="infos"><strong>Date de publication: </strong> {{
+                livre.publication_date.strftime('%d/%m/%Y') }}</p>
             <p class="infos"><strong>ISBN: </strong> {{ livre.isbn }}</p>
-            <p class="infos"><strong>Prix: </strong> {{ livre.price }}€</p>
+            <p class="infos"><strong>Prix: </strong> {{ livre.price|replace('.', ',') }}€</p>
             <div>
-            <a href="https://www.decitre.fr/livres/{{ livre.isbn }}.html"> <img class="decitre-icon"
-                                                                                src="{{ url_for('static', filename='img/logo.png') }}" alt="achat sur DECITRE"  width="40" height="40" ></a>
-            <a href="https://www.amazon.fr/s?k={{ livre.isbn }}"><img class="amazon-icon" src="{{ url_for('static', filename='img/amazon.png') }}"
-                                                                      alt="achat sur amazon"></a>
-                </div>
+                <a href="https://www.decitre.fr/livres/{{ livre.isbn }}.html"> <img class="decitre-icon"
+                                                                                    src="{{ url_for('static', filename='img/logo.png') }}"
+                                                                                    alt="achat sur DECITRE"
+                                                                                    width="40"
+                                                                                    height="40"></a>
+
+
+                <a href="https://www.amazon.fr/s?k={{ livre.isbn }}"><img class="amazon-icon"
+                                                                          src="{{ url_for('static', filename='img/amazon.png') }}"
+                                                                          alt="achat sur amazon"></a>
+            </div>
         </div>
     </div>
 
     {% endfor %}
     {% endblock %}
+
+
 </main>
 
 

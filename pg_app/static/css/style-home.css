@@ -36,7 +36,7 @@ nav div img{
 }
 
 /*
- * La partie inférieure de la barre de navigation
+ * La partie infï¿½rieure de la barre de navigation
  */
 .lower-nav {
   margin-top: .7em;
@@ -71,6 +71,12 @@ main {
   align-items: center;
 }
 
+body .selections{
+font-size: 1.5em;
+font-weight: 600;
+text-align: center;}
+
+
 /*
  * Les conteneurs des livres
  */
@@ -78,6 +84,7 @@ main {
   position: relative;
   background-color: var(--livres-color);
   width: var(--with-livre-container);
+  min-width: 400px;
   margin: 20px;
   padding: 15px;
   flex-wrap: wrap;

@@ -84,3 +84,40 @@
 2024-09-30 10:49:30 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
 2024-09-30 10:51:22 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
 2024-09-30 10:51:22 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 14:49:20 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 14:49:20 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 14:49:25 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 14:49:25 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'read'
+2024-09-30 14:49:25 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-09-30 14:49:29 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-01 09:53:35 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-01 09:58:59 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-01 10:04:04 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-01 10:04:04 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-01 10:59:00 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:34 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:36 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:40 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:40 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:44 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:45 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:45 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:46 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:48 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:48 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'settimeout'
+2024-10-02 14:43:50 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:50 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'settimeout'
+2024-10-02 14:43:50 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:50 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:52 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:52 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:52 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:53 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:53 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'read'
+2024-10-02 14:43:53 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:54 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:55 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:56 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:56 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'read'
+2024-10-02 14:43:56 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-10-02 14:43:56 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first

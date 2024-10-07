@@ -9,6 +9,7 @@ import concurrent.futures
 from abc import ABC, abstractmethod
 
 from pg_app.src.dao.auteurs_dao import AuteursDAO
+from pg_app.src.dao.base_dao import DatabaseConnectionManager
 from pg_app.src.dao.ecrit_dao import EcritDAO
 from pg_app.src.dao.edit_dao import EditDAO
 from pg_app.src.dao.editeurs_dao import EditeursDAO
@@ -123,69 +124,63 @@ class PersonnagesCreator(Creator):
         return personnages
 
 
+def get_all_entities(class_dao: DatabaseConnectionManager) -> list[dict]:
+    """
+    Récupère tous les enregistrements de la table de la base de données
+    associée à cette instance de DatabaseConnectionManager.
+    :param class_dao: un objet de type DatabaseConnectionManager
+    :return:  list[dict] : Une liste de dictionnaires, où chaque dictionnaire
+    represente un enregistrement dans la table de la base de données.
+    """
+    entity = class_dao
+    return entity.get_all()
+
+
+def add_attribute_to_livres_from_database(
+    attribute_name: str, dao_class, get_method: callable
+) -> None:
+    """
+    Ajoute un attribut spécifié à toutes les instances de livre.
+
+    Cette fonction prend en paramètre le nom de l'attribut à ajouter, la classe du DAO à utiliser,
+    et la méthode à appeler sur l'instance DAO pour récupérer la valeur de l'attribut.
+    Elle utilise ensuite l'instance DAO pour récupérer les valeurs de l'attribut pour chaque instance de livre
+    et définit l'attribut sur l'instance de livre en utilisant la fonction setattr.
+    """
+    dao_instance = dao_class()
+    livres = Livre.book_list
+
+    for livre in livres:
+        setattr(livre, attribute_name, get_method(dao_instance, livre.id))
+
+
 def create_all_personnages_from_database() -> list[Personnage]:
-    """
-    Creer tous les personnages de la base de données.
-    """
-    personnages = PersonnagesDAO()
-    results: list[dict] = personnages.get_all()
-    return list(map(PersonnagesCreator().factory_method, results))
+    """Creer tous les personnages de la base de données."""
+    return list(
+        map(PersonnagesCreator().factory_method, get_all_entities(PersonnagesDAO()))
+    )
 
 
 def create_all_membre_jury_from_database() -> list[MembreJury]:
-    """
-    Creer tous les membres du jury de la base de données.
-    """
-    membre_jury = MembresJuryDAO()
-    results: list[dict] = membre_jury.get_all()
-    return list(map(MembreJuryCreator().factory_method, results))
+    """Creer tous les membres du jury de la base de données."""
+    return list(
+        map(MembreJuryCreator().factory_method, get_all_entities(MembresJuryDAO()))
+    )
 
 
 def create_all_editeurs_from_database() -> list[Editeur]:
-    """
-    Creer tous les editeurs de la base de données.
-    """
-    editeurs = EditeursDAO()
-    results: list[dict] = editeurs.get_all()
-    return list(map(EditeursCreator().factory_method, results))
+    """Creer tous les editeurs de la base de données."""
+    return list(map(EditeursCreator().factory_method, get_all_entities(EditeursDAO())))
 
 
 def create_all_livres_from_database() -> list[Livre]:
-    """
-    Creer tous les livres de la base de données.
-    """
-    livres = LivresDAO()
-    results: list[dict] = livres.get_all()
-    return list(map(LivresCreator().factory_method, results))
+    """Creer tous les livres de la base de données."""
+    return list(map(LivresCreator().factory_method, get_all_entities(LivresDAO())))
 
 
 def create_all_auteurs_from_database() -> list[Auteur]:
-    """
-    Creer tous les auteurs de la base de données.
-    """
-    auteurs = AuteursDAO()
-    results: list[dict] = auteurs.get_all()
-    return list(map(AuteursCreator().factory_method, results))
-
-
-def add_editor_to_livres_from_database() -> None:
-    """
-    Ajoute un editeur à toutes les instance de livre"""
-    editeurs = EditDAO()
-    livres = Livre.book_list
-
-    for livre in livres:
-        livre.editeur = editeurs.get_editeur_name_by_livre_id(livre.id)
-
-
-def add_auteur_to_livres_from_database() -> None:
-    """
-    Ajoute un auteur à toutes les instance de livre"""
-    auteurs = EcritDAO()
-    livres = Livre.book_list
-
-    for livre in livres:
-        livre.auteur = auteurs.get_auteur_by_livre_id(livre.id)
+    """Creer tous les auteurs de la base de données."""
+    return list(map(AuteursCreator().factory_method, get_all_entities(AuteursDAO())))
 
 
 def initialize_database_in_threads() -> None:
@@ -200,5 +195,13 @@ def initialize_database_in_threads() -> None:
         executor.submit(create_all_membre_jury_from_database)
         executor.submit(create_all_personnages_from_database)
 
-    add_editor_to_livres_from_database()
-    add_auteur_to_livres_from_database()
+    add_attribute_to_livres_from_database(
+        "editeur",
+        EditDAO,
+        lambda dao, identifier: dao.get_editeur_name_by_livre_id(identifier),
+    )
+    add_attribute_to_livres_from_database(
+        "auteur",
+        EcritDAO,
+        lambda dao, identifier: dao.get_auteur_by_livre_id(identifier),
+    )

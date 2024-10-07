@@ -1,8 +1,9 @@
 :root {
-  --main-color: #C9C3AB; /* Couleur de fond de la page */
-  --nav-color: #C9200A; /* Couleur de la barre de navigation */
-  --grey-color: #585563; /* Couleur des conteneurs des livres */
-  --with-livre-container: 20%; /* Largeur des conteneurs des livres */
+  --main-color: #C9C3AB;
+  --nav-color: #C9200A; 
+  --grey-color: #585563; 
+  --grey-color-darker: #3c3a44; 
+  --with-livre-container: 20%; 
 }
 
 .member-nav{
@@ -45,10 +46,11 @@ flex-direction: column;
 .member-menu-card{
     display: flex;
     padding: 20px;
-   gap: 50px;
+    gap: 50px;
     background-color: var(--grey-color); 
     align-items: center;
     border-radius: 1em;
+    margin: 10px;
   }
 
 .login-container form{display: flex;
@@ -75,6 +77,15 @@ flex-direction: column;
     background-color: rgba(255, 255, 255, 0.2);
     transition: all .3s;
 }
+
+/* select */
+.member-menu-card form select {
+    padding: 3px;
+    background-color: var(--grey-color-darker);
+}
+
+
+
 
 .member-menu-card form li{
 list-style: none;

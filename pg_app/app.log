@@ -1,0 +1,12 @@
+2024-09-24 18:56:07 - pg_app.src.utils.logger - ERROR - Fichier introuvable: [Errno 2] No such file or directory: 'pg_app/config/database_config.json'
+2024-09-24 18:56:07 - pg_app.src.utils.logger - ERROR - Failed to read database configuration
+2024-09-24 18:56:07 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'execute'
+2024-09-24 18:56:07 - pg_app.src.utils.logger - ERROR - Fichier introuvable: [Errno 2] No such file or directory: 'pg_app/config/database_config.json'
+2024-09-24 18:56:07 - pg_app.src.utils.logger - ERROR - Failed to read database configuration
+2024-09-24 18:56:07 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'execute'
+2024-09-24 19:00:09 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1054, "Champ 'DDpg2024' inconnu dans where clause")
+2024-09-24 19:00:09 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1054, "Champ 'DDpg2024' inconnu dans where clause")
+2024-09-24 19:02:29 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1054, "Champ '4a2e207559b9cdf5a806cfcc97cbbdc89432109cb4ff92fd996091a5753ecb18' inconnu dans where clause")
+2024-09-24 19:02:29 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1054, "Champ '4a2e207559b9cdf5a806cfcc97cbbdc89432109cb4ff92fd996091a5753ecb18' inconnu dans where clause")
+2024-09-24 19:02:53 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1054, "Champ '4a2e207559b9cdf5a806cfcc97cbbdc89432109cb4ff92fd996091a5753ecb18' inconnu dans where clause")
+2024-09-24 19:02:53 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1054, "Champ '4a2e207559b9cdf5a806cfcc97cbbdc89432109cb4ff92fd996091a5753ecb18' inconnu dans where clause")

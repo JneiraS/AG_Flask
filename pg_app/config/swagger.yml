@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: "RP Flask REST API"
+  description: "An API about books"
+  version: "1.0.0"
+servers:
+  - url: "/api"
+paths:
+  /books:
+    get:
+      operationId: "api_app.get_all_books"
+      tags:
+        - "Books"
+      summary: "Read the list of books"
+      responses:
+        "200":
+          description: "Successfully read books list"

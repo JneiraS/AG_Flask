@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-import connexion
-import yaml
-from flask import Flask, url_for
+from flask import Flask
 from flask import render_template  # Remove: import Flask
 from flask_swagger_ui import get_swaggerui_blueprint
 
@@ -20,23 +18,14 @@ def create_app():
     """
     app = Flask(__name__)
 
-    # Charger la configuration YAML
-    with open('pg_app/config/swagger.yml', 'r') as f:
-        config = yaml.safe_load(f)
-        config['openapi'] = '3.0.0'
-
     # Configure Swagger UI
-    SWAGGER_URL = "/api"
-    API_URL = '/static/swagger.json'
+    swagger_url = "/api"
+    api_url = '/static/swagger.json'
 
-    SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
-        SWAGGER_URL,
-        API_URL,
-        config=config
+    swagger_blueprint = get_swaggerui_blueprint(
+        swagger_url,
+        api_url,
     )
-
-    app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
-
 
     app.secret_key = "U2FsdGVkX1+H7ODzq10448prts5ZjZs0zYZyQwNzv2ClgXQH8hwXiZ8y4BRryyC3"
 
@@ -44,6 +33,7 @@ def create_app():
     app.register_blueprint(auth_app.bp)
     app.register_blueprint(member_app.bp)
     app.register_blueprint(api_app.bp)
+    app.register_blueprint(swagger_blueprint, url_prefix=swagger_url)
 
     @app.route("/")
     def home():

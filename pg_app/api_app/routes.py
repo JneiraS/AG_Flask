@@ -1,11 +1,13 @@
+import datetime
+
 from flask import (
     jsonify
 )
-
 from slugify import slugify
 
+from pg_app.src.dao.appartient_dao import AppartientDAO
+from pg_app.src.models.livre import Livre
 from . import bp
-from .. import Livre
 
 
 @bp.route('/books', methods=["GET"])
@@ -32,6 +34,14 @@ def get_book_by_title(title):
     if matching_book is None:
         return jsonify({'error': 'Book not found'}), 404
     return jsonify({'book': book_to_dict(matching_book)})
+
+
+@bp.route('/selection/<int:selection>')
+def get_date_and_selection_books(selection: int):
+    ap = AppartientDAO()
+    books_selection = ap.get_books_in_selection(selection)
+    books = {book.title: book_to_dict(book) for book in books_selection}
+    return jsonify({"books": books, "date": datetime.datetime(2012, 12, 12).isoformat()})
 
 
 # TODO Déplacer dans un fichier  utils

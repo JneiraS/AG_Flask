@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
-
+{% block title %}SPA{% endblock %}
 {% block header %}
-<h1>{% block title %}SPA{% endblock %}</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_sap.css') }}">
 {% endblock %}
 
 {% block content %}
-<div class="debug-card">
-    <form class="debug-form">
-        <input type="text" name="endpoint" value="" />
-        <button data-action="read">Get Data</button>
-        <button data-action="clear">Clear</button>
+<h1>Book By Id or Title</h1>
+<div class="book-by-id-card">
+    <form class="debug-form" onsubmit="handleSendClick(event)"> <!-- Assurez-vous que cette fonction est définie -->
+        <input type="text" name="endpoint" value="" placeholder="Enter Book ID or Title" />
+        <button type="submit" data-action="read">Get Data</button>
+        <button type="button" data-action="clear" onclick="handleClearClick(event)">Clear</button>
     </form>
-    <pre>
-        <code></code>
-    </pre>
+
+    <div class="boock-cta"></div>
 </div>
 {% endblock %}

@@ -1,7 +1,7 @@
 import datetime
 
 from flask import (
-    jsonify
+    jsonify, Response
 )
 from slugify import slugify
 
@@ -28,9 +28,8 @@ def get_book(book_id):
 
 
 @bp.route('/books/<string:title>', methods=["GET"])
-def get_book_by_title(title):
+def get_book_by_title(title) -> tuple[Response, int] | Response:
     """Retourne un objet JSON du livre avec le titre donné."""
-    # TODO comparere des slugs
     matching_book = find_book_by("slug", slugify(title))
     if matching_book is None:
         return jsonify({'error': 'Book not found'}), 404
@@ -38,10 +37,33 @@ def get_book_by_title(title):
 
 
 @bp.route('/selection/<int:selection>')
-def get_date_and_selection_books(selection: int):
-    ap = AppartientDAO()
-    books_selection = ap.get_books_in_selection(selection)
+def get_date_and_selection_books(selection: int) -> Response:
+    """Retourn  un objet JSON avec toutes les informations des
+     livres d'une sélection donné"""
+    books_selection = get_books_in_selection(selection)
     books = {book.title: book_to_dict(book) for book in books_selection}
     return jsonify({"books": books, "date": datetime.datetime(2012, 12, 12).isoformat()})
 
 
+@bp.route('/selection/<int:selection>/books')
+def get_list_of_titles_books(selection: int):
+    """Retourn  un objet JSON  avec une liste des livres d'une
+    sélection donné """
+    books_selection = get_books_in_selection(selection)
+    title_books = [book.title for book in books_selection]
+    return jsonify({f"books in selection {selection}": title_books})
+
+
+@bp.route('/selection/<int:selection>/books_id')
+def get_list_of_ids_books(selection: int):
+    """Retourn  un objet JSON  avec une liste des id des livres d'une
+    sélection donné """
+    books_selection = get_books_in_selection(selection)
+    ids_books = [book.id for book in books_selection]
+    return jsonify({f"books in selection {selection}": ids_books})
+
+
+def get_books_in_selection(selection):
+    """Récupère la liste des livres associés à une sélection donnée."""
+    ap = AppartientDAO()
+    return ap.get_books_in_selection(selection)

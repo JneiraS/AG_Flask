@@ -1,17 +1,16 @@
-
 from pg_app import Livre
 
 
 def book_to_dict(book) -> dict:
     """Convertit un objet Livre en un dictionnaire structuré."""
-    data = {book.title: {
-        "id": book.id,
+    data = {
+        "title": book.title,
         "summary": book.summary,
         "publication_date": book.publication_date,
         "number_of_pages": book.number_of_pages,
         "isbn": book.isbn,
         "price": book.price,
-    }}
+    }
     return data
 
 

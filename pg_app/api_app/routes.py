@@ -14,7 +14,7 @@ from .utils import find_book_by, book_to_dict
 @bp.route('/books', methods=["GET"])
 def get_all_books():
     """Return a JSON object of all books."""
-    books = {book.title: book_to_dict(book) for book in Livre.book_list}
+    books = {book.id: book_to_dict(book) for book in Livre.book_list}
     return jsonify({"books": books})
 
 

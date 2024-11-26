@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}SPA{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="debug-card">
+    <form class="debug-form">
+        <input type="text" name="endpoint" value="" />
+        <button data-action="read">Get Data</button>
+        <button data-action="clear">Clear</button>
+    </form>
+    <pre>
+        <code></code>
+    </pre>
+</div>
+{% endblock %}

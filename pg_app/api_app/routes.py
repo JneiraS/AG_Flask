@@ -8,6 +8,7 @@ from slugify import slugify
 from pg_app.src.dao.appartient_dao import AppartientDAO
 from pg_app.src.models.livre import Livre
 from . import bp
+from .utils import find_book_by, book_to_dict
 
 
 @bp.route('/books', methods=["GET"])
@@ -44,20 +45,3 @@ def get_date_and_selection_books(selection: int):
     return jsonify({"books": books, "date": datetime.datetime(2012, 12, 12).isoformat()})
 
 
-# TODO Déplacer dans un fichier  utils ---------->
-def book_to_dict(book) -> dict:
-    data = {book.title: {
-        "id": book.id,
-        "summary": book.summary,
-        "publication_date": book.publication_date,
-        "number_of_pages": book.number_of_pages,
-        "isbn": book.isbn,
-        "price": book.price,
-    }}
-    return data
-
-
-def find_book_by(attr, value):
-    """Recherche un livre dans la liste des livres en fonction
-     d'un attribut spécifique et de sa valeur."""
-    return next((book for book in Livre.book_list if getattr(book, attr) == value), None)

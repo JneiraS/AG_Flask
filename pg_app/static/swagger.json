@@ -94,6 +94,7 @@
         }
       }
     },
+
     "/selection/{selection}": {
       "get": {
         "operationId": "api_app.get_date_and_selection_books",
@@ -126,6 +127,80 @@
                     "date": {
                       "type": "string",
                       "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/selection/{selection}/books": {
+      "get": {
+        "operationId": "api_app.get_list_of_titles_books",
+        "tags": ["Selections"],
+        "summary": "Get list of titles of books in a selection",
+        "parameters": [
+          {
+            "name": "selection",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list of titles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "books in the {selection}": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/selection/{selection}/books_id": {
+      "get": {
+        "operationId": "api_app.get_list_of_ids_books",
+        "tags": ["Selections"],
+        "summary": "Get list of ids of books in a selection",
+        "parameters": [
+          {
+            "name": "selection",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list of titles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "books in the {selection}": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer"
+                      }
                     }
                   }
                 }

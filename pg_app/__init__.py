@@ -57,4 +57,9 @@ def create_app():
 
         return render_template("index.html", livres=troisieme_selection_list)
 
+
+    @app.route("/spa_api")
+    def spa_api():
+        return render_template("api.html")
+
     return app

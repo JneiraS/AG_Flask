@@ -20,7 +20,7 @@ def get_all_books():
 @bp.route('/books/<int:book_id>', methods=["GET"])
 def get_book(book_id):
     """Retourne un objet JSON du livre avec l'ID donné."""
-    selected_book = next((book for book in Livre.book_list if book.id == book_id), None)
+    selected_book = find_book_by("id", book_id)
     if not selected_book:
         return jsonify({"error": "Book not found"}), 404
     return jsonify({"book": book_to_dict(selected_book)})
@@ -30,7 +30,7 @@ def get_book(book_id):
 def get_book_by_title(title):
     """Retourne un objet JSON du livre avec le titre donné."""
     # TODO comparere des slugs
-    matching_book = next((book for book in Livre.book_list if slugify(book.title) == slugify(title)), None)
+    matching_book = find_book_by("slug", slugify(title))
     if matching_book is None:
         return jsonify({'error': 'Book not found'}), 404
     return jsonify({'book': book_to_dict(matching_book)})
@@ -44,7 +44,7 @@ def get_date_and_selection_books(selection: int):
     return jsonify({"books": books, "date": datetime.datetime(2012, 12, 12).isoformat()})
 
 
-# TODO Déplacer dans un fichier  utils
+# TODO Déplacer dans un fichier  utils ---------->
 def book_to_dict(book) -> dict:
     data = {book.title: {
         "id": book.id,
@@ -55,3 +55,9 @@ def book_to_dict(book) -> dict:
         "price": book.price,
     }}
     return data
+
+
+def find_book_by(attr, value):
+    """Recherche un livre dans la liste des livres en fonction
+     d'un attribut spécifique et de sa valeur."""
+    return next((book for book in Livre.book_list if getattr(book, attr) == value), None)

@@ -14,9 +14,7 @@
     "/books": {
       "get": {
         "operationId": "api_app.get_all_books",
-        "tags": [
-          "Books"
-        ],
+        "tags": ["Books"],
         "summary": "Read the list of books",
         "responses": {
           "200": {
@@ -38,9 +36,7 @@
     "/books/{book_id}": {
       "get": {
         "operationId": "api_app.get_book_by_id",
-        "tags": [
-          "Books"
-        ],
+        "tags": ["Books"],
         "summary": "Read a book by ID",
         "parameters": [
           {
@@ -59,6 +55,79 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{title}": {
+      "get": {
+        "operationId": "api_app.get_book_by_title",
+        "tags": ["Books"],
+        "summary": "Read a book by title",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully read book",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      }
+    },
+    "/selection/{selection}": {
+      "get": {
+        "operationId": "api_app.get_date_and_selection_books",
+        "tags": ["Selections"],
+        "summary": "Get date and books in selection",
+        "parameters": [
+          {
+            "name": "selection",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved books and date",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "books": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Book"
+                      }
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
                 }
               }
             }

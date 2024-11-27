@@ -12,15 +12,25 @@ function getData(endpoint, callback) {
 }
 
 function slugify(text) {
+  const from = "àáäâèéëêìíïîòóöôùúüñçßÿỳ";
+  const to = "aaaaeeeeiiiioooouuuuncsyy";
+  const mapping = {};
+
+  for (let i = 0; i < from.length; i++) {
+    mapping[from.charAt(i)] = to.charAt(i);
+  }
+
+  const replacer = (char) => mapping[char] || char;
+
   return text
     .toString()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-') // Remplace les espaces par des tirets
-    .replace(/[^\w-]+/g, '') // Supprime les caractères non alphanumériques
-    .replace(/--+/g, '-'); // Remplace les doubles tirets par un seul
+    .replace(/[\s\W_]/g, "-")
+    .replace(/--+/g, "-")
+    .replace(/[^\w-]+/g, "")
+    .replace(/\u0300-\u036f/g, "")
+    .replace(/[^\x00-\x7F]/g, "")
+    .replace(/[^\w-]/g, replacer);
 }
 
 class BookAPI {
@@ -55,7 +65,7 @@ class BookAPI {
   }
 }
 
-class DebugForm {
+class RequestForm {
   constructor() {
     this.debugCard = document.querySelector(".book-by-id-card");
     this.form = this.debugCard.querySelector(".debug-form");
@@ -87,4 +97,4 @@ class DebugForm {
   }
 }
 
-new DebugForm();
+new RequestForm();

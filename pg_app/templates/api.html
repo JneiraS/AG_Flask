@@ -7,7 +7,7 @@
 {% block content %}
 <h1>Book By Id or Title</h1>
 <div class="book-by-id-card">
-    <form class="debug-form" onsubmit="handleSendClick(event)"> <!-- Assurez-vous que cette fonction est définie -->
+    <form class="debug-form" onsubmit="handleSendClick(event)">
         <input type="text" name="endpoint" value="" placeholder="Enter Book ID or Title" />
         <button type="submit" data-action="read">Get Data</button>
         <button type="button" data-action="clear" onclick="handleClearClick(event)">Clear</button>

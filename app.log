@@ -121,3 +121,8 @@
 2024-10-02 14:43:56 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: 'NoneType' object has no attribute 'read'
 2024-10-02 14:43:56 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
 2024-10-02 14:43:56 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: execute() first
+2024-11-27 13:20:45 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1062, "Duplicata du champ '2-2' pour la clef 'appartient.PRIMARY'")
+2024-11-27 13:20:46 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1062, "Duplicata du champ '2-2' pour la clef 'appartient.PRIMARY'")
+2024-11-27 13:22:29 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1062, "Duplicata du champ '2-2' pour la clef 'appartient.PRIMARY'")
+2024-11-27 13:23:14 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1062, "Duplicata du champ '2-2' pour la clef 'appartient.PRIMARY'")
+2024-11-27 13:25:59 - pg_app.src.utils.logger - ERROR - Une erreur est survenue: (1062, "Duplicata du champ '2-2' pour la clef 'appartient.PRIMARY'")

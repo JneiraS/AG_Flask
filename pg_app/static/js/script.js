@@ -33,7 +33,29 @@ function slugify(text) {
     .replace(/[^\w-]/g, replacer);
 }
 
-class BookAPI {
+
+// Classe abstraite de base pour les API
+class AbstractAPI {
+  static getData(endpoint, callback) {
+    const request = new XMLHttpRequest();
+    request.onload = () => {
+      if (request.status === 200) {
+        callback(request.response);
+      } else {
+        console.error(`Erreur lors de la récupération des données : ${request.status}`);
+      }
+    };
+    request.open("GET", endpoint);
+    request.send();
+  }
+
+  static showResponse(data) {
+    throw new Error("La méthode showResponse doit être implémentée");
+  }
+}
+
+
+class BookAPI extends AbstractAPI {
   static getBookByTitle(title) {
     const sluggedValue = slugify(title);
     console.log(`Slug généré pour le titre "${title}": ${sluggedValue}`);
@@ -52,11 +74,11 @@ class BookAPI {
     const response = JSON.parse(data);
     let html = "";
     if (response.book) {
-      html += `<h1>${response.book.title}</h1>`;
-      html += `<p>isbn: ${response.book.isbn}</p>`;
-      html += `<p>Nombre de pages: ${response.book.number_of_pages}</p>`;
-      html += `<p>Prix: ${response.book.price}</p>`;
-      html += `<p>Date de publication: ${response.book.publication_date}</p>`;
+      html += `<h1>${response.book.title}</h1><br>`;
+      html += `<p><strong>isbn:</strong> ${response.book.isbn}</p>`;
+      html += `<p><strong>Nombre de pages:</strong> ${response.book.number_of_pages}</p>`;
+      html += `<p><strong>Prix:</strong> ${response.book.price}</p>`;
+      html += `<p><strong>Date de publication:</strong> ${response.book.publication_date}</p><br>`;
       html += `<p>${response.book.summary}</p>`;
     } else {
       html += `<p>Données non disponibles</p>`;

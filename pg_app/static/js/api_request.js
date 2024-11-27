@@ -1,4 +1,3 @@
-
 import { getData, slugify } from "./funcs.js";
 
 
@@ -73,23 +72,45 @@ export class SelectionAPI extends AbstractAPI {
   }
 
   static addBookToSelection(selection, bookId) {
-    const endpoint = `api/selection/${selection}/${bookId}`; // Utilise le numero de selection et l'ID du livre
+    const endpoint = `api/selection/${selection}/${bookId}`;
+    
+    // Vérification des paramètres
+    if (!selection || !bookId) {
+        console.error('Selection et bookId sont requis');
+        return;
+    }
+
+    // Données à envoyer - simplifié car book_id est déjà dans l'URL
+    const data = {};
+
     fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ selection, bookId })
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Failed to load resource: the server responded with a status of ${response.status} (${response.statusText})`);
-      }
-      return response.json();
+    .then(async response => {
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => null);
+            throw new Error(errorData?.error || `Erreur serveur: ${response.status}`);
+        }
+        return response.json();
     })
-    .then(data => this.showResponse(data))
-    .catch(error => console.error('Error:', error));
-  }
+    .then(data => {
+        const debugCard = document.querySelector(".add-book-to-selection");
+        let code = debugCard.querySelector(".selection-cta");
+        code.innerHTML = `<p>Livre ${bookId} ajouté avec succès à la sélection ${selection}</p>`;
+        console.log('Succès:', data);
+    })
+    .catch(error => {
+        const debugCard = document.querySelector(".add-book-to-selection");
+        let code = debugCard.querySelector(".selection-cta");
+        code.innerHTML = `<p>Erreur: ${error.message}</p>`;
+        console.error('Erreur détaillée:', error);
+    });
+}
 
 
 }

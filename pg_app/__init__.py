@@ -26,7 +26,6 @@ def create_app():
         swagger_url,
         api_url,
     )
-
     app.secret_key = "U2FsdGVkX1+H7ODzq10448prts5ZjZs0zYZyQwNzv2ClgXQH8hwXiZ8y4BRryyC3"
 
     initialize_database_in_threads()

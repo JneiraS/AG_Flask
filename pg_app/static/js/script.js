@@ -64,5 +64,38 @@ class RequestSelection extends RequestForm {
   }
 }
 
+class RequestAddBookToSelection extends RequestForm {
+
+  constructor() {
+    super();
+    this.debugCard = document.querySelector(".add-book-to-selection");
+    this.form = this.debugCard.querySelector(".debug-form");
+    this.clearButton = this.form.querySelector("button[data-action='clear']");
+    this.clearButton.addEventListener(
+      "click",
+      this.handleClearClick.bind(this)
+    );
+    this.sendButton = this.form.querySelector("button[data-action='read']");
+    this.sendButton.addEventListener("click", this.handleSendClick.bind(this));
+  }
+
+  handleClearClick(event) {
+    event.preventDefault();
+    let code = this.debugCard.querySelector(".add-selection-cta");
+    code.innerText = "";
+  }
+
+  handleSendClick(event) {
+    event.preventDefault();
+    const input = document.querySelector(".add-book-to-selection input[name='selection_id']");
+    const input_id = document.querySelector(".add-book-to-selection #book-id");
+    console.log(`Valeur entrée: ${input.value}`);
+    console.log(`Valeur entrée: ${input_id.value}`);
+    SelectionAPI.addBookToSelection(input.value, input_id.value); // Appelle la méthode pour ajouter le livre à la
+
+  }
+}
+
 const requestByTitleorId = new RequestForm();
 const requestSelection = new RequestSelection();
+const requestAddBookToSelection = new RequestAddBookToSelection();

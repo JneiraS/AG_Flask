@@ -26,4 +26,15 @@
 
     <div class="selection-cta"></div>
 </div>
+
+<h1>Add Book to Selection</h1>
+<div class="add-book-to-selection">
+    <form class="debug-form" method="post" onsubmit="requestAddBookToSelection.handleSendClick(event)">
+        <input type="text" name="selection_id" value="" placeholder="Numéro de sélection" />
+        <input id="book-id" type="text" name="book_id" value="" placeholder="Id du livre" />
+        <button type="submit" data-action="read">Ajouter le livre à la sélection</button>
+        <button type="button" data-action="clear" onclick="requestAddBookToSelection.handleClearClick(event)">Effacer</button>
+    </form>
+    <div class="add-selection-cta"></div>
+</div>
 {% endblock %}

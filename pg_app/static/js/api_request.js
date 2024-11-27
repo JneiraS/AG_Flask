@@ -72,5 +72,24 @@ export class SelectionAPI extends AbstractAPI {
     code.innerHTML = html;
   }
 
+  static addBookToSelection(selection, bookId) {
+    const endpoint = `api/selection/${selection}/${bookId}`; // Utilise le numero de selection et l'ID du livre
+    fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ selection, bookId })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Failed to load resource: the server responded with a status of ${response.status} (${response.statusText})`);
+      }
+      return response.json();
+    })
+    .then(data => this.showResponse(data))
+    .catch(error => console.error('Error:', error));
+  }
+
 
 }

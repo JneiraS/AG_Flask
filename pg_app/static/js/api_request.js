@@ -1,4 +1,3 @@
-
 import { getData, slugify } from "./funcs.js";
 
 
@@ -12,7 +11,7 @@ export class AbstractAPI {
 export class BookAPI extends AbstractAPI {
   static getBookByTitle(title) {
     const sluggedValue = slugify(title);
-    console.log(`Slug généré pour le titre "${title}": ${sluggedValue}`);
+
     const endpoint = `api/books/${sluggedValue}`; // Utilise le slug pour l'API
     return getData(endpoint, this.showResponse);
   }
@@ -24,7 +23,7 @@ export class BookAPI extends AbstractAPI {
 
   static showResponse(data) {
     const debugCard = document.querySelector(".book-by-id-card");
-    let code = debugCard.querySelector(".boock-cta");
+    let codes = debugCard.querySelector(".boock-cta");
     const response = JSON.parse(data);
     let html = "";
     if (response.book) {
@@ -37,7 +36,7 @@ export class BookAPI extends AbstractAPI {
     } else {
       html += `<p>Données non disponibles</p>`;
     }
-    code.innerHTML = html;
+    codes.innerHTML = html;
   }
 }
 
@@ -83,22 +82,22 @@ export class SelectionAPI extends AbstractAPI {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error(`Failed to load resource: the server responded with a status of ${response.status} (${response.statusText})`);
+        throw new Error(`Échec du chargement de la ressource : le serveur a répondu avec un statut de ${response.status} (${response.statusText})`);
       }
       return response.json();
     })
     .then(data => {
         const debugCard = document.querySelector(".add-book-to-selection");
-        let code = debugCard.querySelector(".selection-cta");
+        let code = debugCard.querySelector(".aselection-cta");
         code.innerHTML = `<p>Livre ${bookId} ajouté avec succès à la sélection ${selection}</p>`;
-        console.log('Succès:', data);
+        console.log('Succès :', data);
     })
     .catch(error => {
-        const debugCard = document.querySelector(".add-book-to-selection");
-        let code = debugCard.querySelector(".selection-cta");
-        code.innerHTML = `<p>Erreur: ${error.message}</p>`;
-        console.error('Erreur détaillée:', error);
-    });
+      const debugCard = document.querySelector(".add-book-to-selection");
+      let code = debugCard.querySelector(".aselection-cta");
+      code.innerHTML = `<p>Erreur : ${error.message}</p>`; // Message d'erreur en français
+      console.error('Erreur détaillée :', error);
+  });
 }
 
 

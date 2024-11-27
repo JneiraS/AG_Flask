@@ -89,10 +89,9 @@ class RequestAddBookToSelection extends RequestForm {
     event.preventDefault();
     const input = document.querySelector(".add-book-to-selection input[name='selection_id']");
     const input_id = document.querySelector(".add-book-to-selection #book-id");
-    console.log(`Valeur entrée: ${input.value}`);
-    console.log(`Valeur entrée: ${input_id.value}`);
-    SelectionAPI.addBookToSelection(input.value, input_id.value); // Appelle la méthode pour ajouter le livre à la
-
+    console.log(`Valeur entrée pour la sélection: ${input.value}`); // Message d'erreur en français
+    console.log(`Valeur entrée pour l'ID du livre: ${input_id.value}`); // Message d'erreur en français
+    SelectionAPI.addBookToSelection(input.value, input_id.value); // Appelle la méthode pour ajouter le livre à la sélection
   }
 }
 

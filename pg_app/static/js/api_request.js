@@ -44,7 +44,7 @@ export class BookAPI extends AbstractAPI {
 export class SelectionAPI extends AbstractAPI {
 
   static getBookBySelection(selection) {
-    const endpoint = `api/selection/${selection}`; // Utilise l'ID pour l'API
+    const endpoint = `api/selection/${selection}`; // Utilise le numero de selection
     console.log(endpoint);
     return getData(endpoint, this.showResponse);
   }
@@ -57,12 +57,14 @@ export class SelectionAPI extends AbstractAPI {
     if (response.books) {
       Object.keys(response.books).forEach((bookTitle) => {
         const book = response.books[bookTitle];
-        html += `<h2>${bookTitle}</h2><br>`;
+        html += `<div class="book-element">`;
+        html += `<br><h2>${bookTitle}</h2><br>`;
         html += `<p><strong>ISBN:</strong> ${book.isbn}</p>`;
         html += `<p><strong>Nombre de pages:</strong> ${book.number_of_pages}</p>`;
         html += `<p><strong>Prix:</strong> ${book.price}</p>`;
         html += `<p><strong>Date de publication:</strong> ${book.publication_date}</p><br>`;
         html += `<p>${book.summary}</p>`;
+        html += `</div>`;
       });
     } else {
       html += `<p>Données non disponibles</p>`;

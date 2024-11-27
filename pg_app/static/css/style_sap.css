@@ -20,7 +20,7 @@ body {
   padding: 1em 5em;
 }
 
- h1 {
+ h1 , .book-element h2{
  margin-bottom: .2em;
  font-weight: 100;
  color: var(--font-color-darker);
@@ -81,4 +81,25 @@ button:hover {
     background-color: var(--main-color);
     color: var(--bg-color);
 }
+
+.book-selection h2 {
+  position: relative;
+
+
+}
+
+.book-element {
+ margin: .3em;
+transition: all 1.6s;
+padding: 1em;
+}
+
+.book-element:hover {
+  
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
+  transition: transform 1.8s;
+  border-radius: 5px;
+}
+
 

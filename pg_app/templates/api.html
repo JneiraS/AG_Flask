@@ -7,12 +7,23 @@
 {% block content %}
 <h1>Book By Id or Title</h1>
 <div class="book-by-id-card">
-    <form class="debug-form" onsubmit="handleSendClick(event)">
+    <form class="debug-form" onsubmit="requestByTitleorId.handleSendClick(event)">
         <input type="text" name="endpoint" value="" placeholder="Enter Book ID or Title" />
         <button type="submit" data-action="read">Get Data</button>
-        <button type="button" data-action="clear" onclick="handleClearClick(event)">Clear</button>
+        <button type="button" data-action="clear" onclick="requestByTitleorId.handleClearClick(event)">Clear</button>
     </form>
 
     <div class="boock-cta"></div>
+</div>
+
+<h1>Selection</h1>
+<div class="book-selection">
+    <form class="debug-form" onsubmit="requestSelection.handleSendClick(event)">
+        <input type="text" name="endpoint" value="" placeholder="Enter Selection Number" />
+        <button type="submit" data-action="read">Get Data</button>
+        <button type="button" data-action="clear" onclick="requestSelection.handleClearClick(event)">Effacer</button>
+    </form>
+
+    <div class="selection-cta"></div>
 </div>
 {% endblock %}

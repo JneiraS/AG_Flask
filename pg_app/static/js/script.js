@@ -36,18 +36,7 @@ function slugify(text) {
 
 // Classe abstraite de base pour les API
 class AbstractAPI {
-  static getData(endpoint, callback) {
-    const request = new XMLHttpRequest();
-    request.onload = () => {
-      if (request.status === 200) {
-        callback(request.response);
-      } else {
-        console.error(`Erreur lors de la récupération des données : ${request.status}`);
-      }
-    };
-    request.open("GET", endpoint);
-    request.send();
-  }
+
 
   static showResponse(data) {
     throw new Error("La méthode showResponse doit être implémentée");
@@ -87,6 +76,38 @@ class BookAPI extends AbstractAPI {
   }
 }
 
+class SelectionAPI extends AbstractAPI {
+
+  static getBookBySelection(selection) {
+    const endpoint = `api/selection/${selection}`; // Utilise l'ID pour l'API
+    console.log(endpoint);
+    return getData(endpoint, this.showResponse);
+  }
+
+  static showResponse(data) {
+    const response = JSON.parse(data);
+    const debugCard = document.querySelector(".book-selection");
+    let code = debugCard.querySelector(".selection-cta");
+    let html = "";
+    if (response.books) {
+      Object.keys(response.books).forEach((bookTitle) => {
+        const book = response.books[bookTitle];
+        html += `<h2>${bookTitle}</h2><br>`;
+        html += `<p><strong>ISBN:</strong> ${book.isbn}</p>`;
+        html += `<p><strong>Nombre de pages:</strong> ${book.number_of_pages}</p>`;
+        html += `<p><strong>Prix:</strong> ${book.price}</p>`;
+        html += `<p><strong>Date de publication:</strong> ${book.publication_date}</p><br>`;
+        html += `<p>${book.summary}</p>`;
+      });
+    } else {
+      html += `<p>Données non disponibles</p>`;
+    }
+    code.innerHTML = html;
+  }
+
+
+}
+
 class RequestForm {
   constructor() {
     this.debugCard = document.querySelector(".book-by-id-card");
@@ -119,4 +140,41 @@ class RequestForm {
   }
 }
 
-new RequestForm();
+class RequestSelection extends RequestForm {
+  constructor () {
+    super();
+    this.debugCard = document.querySelector(".book-selection");
+    this.form = this.debugCard.querySelector(".debug-form");
+    this.clearButton = this.form.querySelector("button[data-action='clear']");
+    this.clearButton.addEventListener(
+      "click",
+      this.handleClearClick.bind(this)
+    );
+    this.sendButton = this.form.querySelector("button[data-action='read']");
+    this.sendButton.addEventListener("click", this.handleSendClick.bind(this));
+  }
+
+  handleClearClick(event) {
+    event.preventDefault();
+    let code = this.debugCard.querySelector(".selection-cta");
+    code.innerText = "";
+  }
+
+  handleSendClick(event) {
+    event.preventDefault();
+    const input = document.querySelector(".book-selection input");
+    const isId = !isNaN(input.value); // Vérifie si la valeur est un nombre
+    console.log(`Valeur entrée: ${input.value}`);
+    if (isId) {
+      SelectionAPI.getBookBySelection(input.value); // Appelle la méthode pour obtenir le livre par ID
+    }
+  }
+
+
+
+}
+
+
+
+const requestByTitleorId = new  RequestForm();
+const requestSelection = new  RequestSelection();

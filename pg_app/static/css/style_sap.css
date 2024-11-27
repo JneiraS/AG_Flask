@@ -26,7 +26,7 @@ body {
  color: var(--font-color-darker);
 }
 
-.boock-cta {
+.boock-cta, .selection-cta {
   margin: 1em 0em;
   background-color: var(--main-color);
   padding: 1em 5em;

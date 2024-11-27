@@ -1,5 +1,4 @@
-git difimport {BookAPI, SelectionAPI} from "./api_request.js";
-
+import { BookAPI, SelectionAPI } from "./api_request.js";
 // ... reste du code inchangé
 
 class RequestForm {
@@ -15,13 +14,11 @@ class RequestForm {
     this.sendButton.addEventListener("click", this.handleSendClick.bind(this));
   }
 
-
   handleClearClick(event) {
     event.preventDefault();
     let code = this.debugCard.querySelector(".boock-cta");
     code.innerText = "";
   }
-
 
   handleSendClick(event) {
     event.preventDefault();
@@ -82,6 +79,11 @@ class RequestAddBookToSelection extends RequestForm {
     this.sendButton.addEventListener("click", this.handleSendClick.bind(this));
   }
 
+  handleClearClick(event) {
+    event.preventDefault();
+    let code = this.debugCard.querySelector(".add-selection-cta");
+    code.innerText = "";
+  }
 
   handleSendClick(event) {
     event.preventDefault();

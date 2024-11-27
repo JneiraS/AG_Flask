@@ -1,3 +1,4 @@
+
 import { getData, slugify } from "./funcs.js";
 
 
@@ -72,31 +73,19 @@ export class SelectionAPI extends AbstractAPI {
   }
 
   static addBookToSelection(selection, bookId) {
-    const endpoint = `api/selection/${selection}/${bookId}`;
-    
-    // Vérification des paramètres
-    if (!selection || !bookId) {
-        console.error('Selection et bookId sont requis');
-        return;
-    }
-
-    // Données à envoyer - simplifié car book_id est déjà dans l'URL
-    const data = {};
-
+    const endpoint = `api/selection/${selection}/${bookId}`; // Utilise le numero de selection et l'ID du livre
     fetch(endpoint, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(data)
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ selection, bookId })
     })
-    .then(async response => {
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => null);
-            throw new Error(errorData?.error || `Erreur serveur: ${response.status}`);
-        }
-        return response.json();
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Failed to load resource: the server responded with a status of ${response.status} (${response.statusText})`);
+      }
+      return response.json();
     })
     .then(data => {
         const debugCard = document.querySelector(".add-book-to-selection");

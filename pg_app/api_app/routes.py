@@ -1,7 +1,7 @@
 import datetime
 
 from flask import (
-    jsonify, Response
+    jsonify, Response, request
 )
 from slugify import slugify
 
@@ -63,14 +63,28 @@ def get_list_of_ids_books(selection: int):
     return jsonify({f"books in selection {selection}": ids_books})
 
 
-@bp.route('/selection/<int:selection_id>/<int:book_id>', methods=["POST"])
-def add_book_to_selection(selection_id: int, book_id: int):
+@bp.route('/selection/<int:selection_id>', methods=["POST"])
+def add_book_to_selection(selection_id: int):
     """Ajoute un livre à une selection."""
-    ap = AppartientDAO()
+    appartient_dao = AppartientDAO()
 
-    if ap.insert_book_to_selection(book_id, selection_id):
+    # Récupérer les id des livres
+    request_data = request.get_json()
+
+    # Validation des données
+    if "book_ids" not in request_data:
+        return jsonify({"error": "Missing book ids"}), 400
+
+    if not isinstance(request_data["book_ids"], list):
+        return jsonify({"error": "Book ids must be a list"}), 400
+
+    # Traiter la requête
+    book_ids: list[int] = request_data.get("book_ids")
+
+    if not appartient_dao.add_books_to_selection(selection_id, book_ids):
         return jsonify({"error": "Failed to add book to selection"}), 400
-    return jsonify({"message": "Book added to selection successfully"}), 201
+
+    return jsonify({"message": "Book added to successfully"}), 201
 
 
 def get_books_in_selection(selection):

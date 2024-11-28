@@ -4,7 +4,9 @@ export function getData(endpoint, callback) {
     if (request.status === 200) {
       callback(request.response);
     } else {
-      console.error(`Erreur lors de la récupération des données : ${request.status}`);
+      console.error(
+        `Erreur lors de la récupération des données : ${request.status}`
+      );
     }
   };
   request.open("GET", endpoint);

@@ -1,4 +1,6 @@
 import { BookAPI, SelectionAPI } from "./api_request.js";
+import { hashPassword } from "./funcs.js";
+
 
 export class RequestForm {
   constructor() {
@@ -51,7 +53,6 @@ export class RequestSelection extends RequestForm {
     event.preventDefault();
     const input = document.querySelector(".book-selection input");
     const isId = !isNaN(input.value); // Vérifie si la valeur est un nombre
-    console.log(`Valeur entrée: ${input.value}`);
     if (isId) {
       SelectionAPI.getBookBySelection(input.value); // Appelle la méthode pour obtenir le livre par ID
     }
@@ -78,8 +79,10 @@ export class RequestAddBookToSelection extends RequestForm {
       ".add-book-to-selection input[name='selection_id']"
     );
     const input_id = document.querySelector(".add-book-to-selection #book-id");
-    console.log(`Valeur entrée pour la sélection: ${input.value}`); 
-    console.log(`Valeur entrée pour l'ID du livre: ${input_id.value}`); 
-    SelectionAPI.addBookToSelection(input.value, input_id.value);
+    const user_auth = document.querySelector(".add-book-to-selection #user").value;
+    
+    hashPassword(user_auth).then(hashedPassword => {
+      SelectionAPI.addBookToSelection(input.value, input_id.value, hashedPassword);
+    });
   }
 }

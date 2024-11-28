@@ -49,7 +49,7 @@ def get_date_and_selection_books(selection: int) -> Response:
 def get_list_of_titles_books(selection: int):
     """Retourn  un objet JSON  avec une liste des livres d'une
     sélection donné """
-    books_selection = get_books_in_selection(selection)
+    books_selection: list[Livre] = get_books_in_selection(selection)
     title_books = [book.title for book in books_selection]
     return jsonify({f"books in selection {selection}": title_books})
 
@@ -68,7 +68,7 @@ def add_book_to_selection(selection_id: int):
     """Ajoute des livres à une selection."""
     appartient_dao = AppartientDAO()
 
-    # Récupérer les id des livres
+    # Récupérer la requête
     request_data = request.get_json()
 
     # Validation des données
@@ -85,6 +85,3 @@ def add_book_to_selection(selection_id: int):
         return jsonify({"error": "Failed to add book to selection"}), 400
 
     return jsonify({"message": "Book added successfully"}), 201
-
-
-

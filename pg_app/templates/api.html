@@ -32,6 +32,8 @@
     <form class="debug-form" method="post" onsubmit="requestAddBookToSelection.handleSendClick(event)">
         <input type="text" name="selection_id" value="" placeholder="Numéro de sélection" />
         <input id="book-id" type="text" name="book_id" value="" placeholder="Id du livre" />
+        <input id="user" type="password" name="book_id" value="" placeholder="Votre mot de passe"
+               autocomplete="current-password" />
         <button type="submit" data-action="read">Ajouter le livre à la sélection</button>
         <button type="button" data-action="clear" onclick="requestAddBookToSelection.handleClearClick(event)">Effacer</button>
     </form>

@@ -1,3 +1,4 @@
+
 from pg_app import Livre
 from pg_app.src.dao.appartient_dao import AppartientDAO
 
@@ -25,3 +26,6 @@ def get_books_in_selection(selection):
     """Récupère la liste des livres associés à une sélection donnée."""
     appartient_dao = AppartientDAO()
     return appartient_dao.get_books_in_selection(selection)
+
+
+

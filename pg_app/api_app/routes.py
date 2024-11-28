@@ -9,6 +9,7 @@ from pg_app.src.dao.appartient_dao import AppartientDAO
 from pg_app.src.models.livre import Livre
 from . import bp
 from .utils import find_book_by, book_to_dict, get_books_in_selection
+from ..src.dao.membre_jury_dao import MembresJuryDAO
 
 
 @bp.route('/books', methods=["GET"])
@@ -64,24 +65,21 @@ def get_list_of_ids_books(selection: int):
 
 
 @bp.route('/selection/<int:selection_id>', methods=["POST"])
-def add_book_to_selection(selection_id: int):
-    """Ajoute des livres à une selection."""
-    appartient_dao = AppartientDAO()
+def add_book_to_selection(selection_id: int) -> tuple[Response, int]:
+    """Add books to a selection."""
+    dao = AppartientDAO()
+    member_dao = MembresJuryDAO()
 
-    # Récupérer la requête
-    request_data = request.get_json()
-
-    # Validation des données
-    if "book_ids" not in request_data:
-        return jsonify({"error": "Missing book ids"}), 400
-
-    if not isinstance(request_data["book_ids"], list):
+    data = request.get_json()
+    if (user_id := data.get("auth")) is None:
+        return jsonify({"error": "Missing auth"}), 400
+    if not isinstance((book_ids := data.get("book_ids")), list):
         return jsonify({"error": "Book ids must be a list"}), 400
 
-    # Traiter la requête
-    book_ids: list[int] = request_data.get("book_ids")
+    if not member_dao.gethash(user_id):
+        return jsonify({"error": "You don't have permission to do that"}), 400
 
-    if not appartient_dao.add_books_to_selection(selection_id, book_ids):
+    if not dao.add_books_to_selection(selection_id, book_ids):
         return jsonify({"error": "Failed to add book to selection"}), 400
 
     return jsonify({"message": "Book added successfully"}), 201

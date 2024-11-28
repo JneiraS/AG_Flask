@@ -32,6 +32,7 @@ export class BookAPI extends AbstractAPI {
       html += `<p><strong>Prix:</strong> ${response.book.price}</p>`;
       html += `<p><strong>Date de publication:</strong> ${response.book.publication_date}</p><br>`;
       html += `<p>${response.book.summary}</p>`;
+      html += `<br><a href="https://www.amazon.fr/s?k=${response.book.isbn}">Acheter</a>`;
     } else {
       html += `<p>Données non disponibles</p>`;
     }
@@ -42,7 +43,6 @@ export class BookAPI extends AbstractAPI {
 export class SelectionAPI extends AbstractAPI {
   static getBookBySelection(selection) {
     const endpoint = `api/selection/${selection}`; // Utilise le numero de selection
-    console.log(endpoint);
     return getData(endpoint, this.showResponse);
   }
 
@@ -61,6 +61,7 @@ export class SelectionAPI extends AbstractAPI {
         html += `<p><strong>Prix:</strong> ${book.price}</p>`;
         html += `<p><strong>Date de publication:</strong> ${book.publication_date}</p><br>`;
         html += `<p>${book.summary}</p>`;
+        html += `<br><a href="https://www.amazon.fr/s?k=${book.isbn}">Acheter</a>`;
         html += `</div>`;
       });
     } else {
@@ -69,13 +70,15 @@ export class SelectionAPI extends AbstractAPI {
     code.innerHTML = html;
   }
 
-  static async addBookToSelection(selectionId, bookId) {
+  static async addBookToSelection(selectionId, bookId, auth) {
     const bookIdsArray = bookId.split(",");
     const endpoint = `api/selection/${selectionId}`;
+    const authentif = auth
+    console.log(JSON.stringify({  book_ids: bookIdsArray, auth: authentif  }));
     const response = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ book_ids: bookIdsArray }),
+      body: JSON.stringify({ book_ids: bookIdsArray, auth: authentif }),
     });
 
     if (!response.ok) {

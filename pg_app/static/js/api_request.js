@@ -1,6 +1,5 @@
 import { getData, slugify } from "./funcs.js";
 
-
 // Classe abstraite de base pour les API
 export class AbstractAPI {
   static showResponse(data) {
@@ -41,7 +40,6 @@ export class BookAPI extends AbstractAPI {
 }
 
 export class SelectionAPI extends AbstractAPI {
-
   static getBookBySelection(selection) {
     const endpoint = `api/selection/${selection}`; // Utilise le numero de selection
     console.log(endpoint);
@@ -72,16 +70,18 @@ export class SelectionAPI extends AbstractAPI {
   }
 
   static async addBookToSelection(selectionId, bookId) {
-    const bookIdsArray = bookId.split(',');
+    const bookIdsArray = bookId.split(",");
     const endpoint = `api/selection/${selectionId}`;
     const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ "book_ids" : bookIdsArray})
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ book_ids: bookIdsArray }),
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to add book: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `Failed to add book: ${response.status} ${response.statusText}`
+      );
     }
 
     const result = await response.json();
@@ -91,9 +91,7 @@ export class SelectionAPI extends AbstractAPI {
     if (result.success) {
       messageElement.innerHTML = `<p>Book ${bookId} added to selection ${selectionId} successfully.</p>`;
     } else {
-      messageElement.innerHTML = `<p>${result.message || 'Unknown error'}</p>`;
+      messageElement.innerHTML = `<p>${result.message || "Unknown error"}</p>`;
     }
   }
-
-
 }

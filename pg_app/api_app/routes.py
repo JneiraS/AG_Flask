@@ -8,12 +8,12 @@ from slugify import slugify
 from pg_app.src.dao.appartient_dao import AppartientDAO
 from pg_app.src.models.livre import Livre
 from . import bp
-from .utils import find_book_by, book_to_dict
+from .utils import find_book_by, book_to_dict, get_books_in_selection
 
 
 @bp.route('/books', methods=["GET"])
 def get_all_books():
-    """Return a JSON object of all books."""
+    """Retourne un objet JSON avec tous les livres."""
     books = {book.id: book_to_dict(book) for book in Livre.book_list}
     return jsonify({"books": books})
 
@@ -65,7 +65,7 @@ def get_list_of_ids_books(selection: int):
 
 @bp.route('/selection/<int:selection_id>', methods=["POST"])
 def add_book_to_selection(selection_id: int):
-    """Ajoute un livre à une selection."""
+    """Ajoute des livres à une selection."""
     appartient_dao = AppartientDAO()
 
     # Récupérer les id des livres
@@ -87,7 +87,4 @@ def add_book_to_selection(selection_id: int):
     return jsonify({"message": "Book added successfully"}), 201
 
 
-def get_books_in_selection(selection):
-    """Récupère la liste des livres associés à une sélection donnée."""
-    ap = AppartientDAO()
-    return ap.get_books_in_selection(selection)
+

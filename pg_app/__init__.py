@@ -11,6 +11,8 @@ from . import member_app
 from .src.dao.appartient_dao import AppartientDAO
 from .src.models.livre import Livre
 
+INDEX_TEMPLATE = "index.html"
+
 
 def create_app():
     """
@@ -39,7 +41,7 @@ def create_app():
         list_of_selected_books = Livre.book_list
         list_of_editors = Editeur.editor_list
         return render_template(
-            "index.html", livres=list_of_selected_books, editors=list_of_editors
+            INDEX_TEMPLATE, livres=list_of_selected_books, editors=list_of_editors
         )
 
     @app.route("/seconde-selection")
@@ -47,15 +49,14 @@ def create_app():
         appartient_dao = AppartientDAO()
         seconde_selection_list: list[Livre] = appartient_dao.get_books_in_selection(2)
 
-        return render_template("index.html", livres=seconde_selection_list)
+        return render_template(INDEX_TEMPLATE, livres=seconde_selection_list)
 
     @app.route("/troisieme-selection")
     def troisieme_selection():
         appartient_dao = AppartientDAO()
         troisieme_selection_list: list[Livre] = appartient_dao.get_books_in_selection(3)
 
-        return render_template("index.html", livres=troisieme_selection_list)
-
+        return render_template(INDEX_TEMPLATE, livres=troisieme_selection_list)
 
     @app.route("/spa_api")
     def spa_api():

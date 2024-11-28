@@ -1,15 +1,15 @@
 import { BookAPI, SelectionAPI } from "./api_request.js";
 
-
 export class RequestForm {
   constructor() {
     this.debugCard = document.querySelector(".book-by-id-card");
     this.form = this.debugCard.querySelector(".debug-form");
+    this.initializeButtons();
+  }
+
+  initializeButtons() {
     this.clearButton = this.form.querySelector("button[data-action='clear']");
-    this.clearButton.addEventListener(
-      "click",
-      this.handleClearClick.bind(this)
-    );
+    this.clearButton.addEventListener("click", this.handleClearClick.bind(this));
     this.sendButton = this.form.querySelector("button[data-action='read']");
     this.sendButton.addEventListener("click", this.handleSendClick.bind(this));
   }
@@ -38,13 +38,7 @@ export class RequestSelection extends RequestForm {
     super();
     this.debugCard = document.querySelector(".book-selection");
     this.form = this.debugCard.querySelector(".debug-form");
-    this.clearButton = this.form.querySelector("button[data-action='clear']");
-    this.clearButton.addEventListener(
-      "click",
-      this.handleClearClick.bind(this)
-    );
-    this.sendButton = this.form.querySelector("button[data-action='read']");
-    this.sendButton.addEventListener("click", this.handleSendClick.bind(this));
+    this.initializeButtons();
   }
 
   handleClearClick(event) {
@@ -69,13 +63,7 @@ export class RequestAddBookToSelection extends RequestForm {
     super();
     this.debugCard = document.querySelector(".add-book-to-selection");
     this.form = this.debugCard.querySelector(".debug-form");
-    this.clearButton = this.form.querySelector("button[data-action='clear']");
-    this.clearButton.addEventListener(
-      "click",
-      this.handleClearClick.bind(this)
-    );
-    this.sendButton = this.form.querySelector("button[data-action='read']");
-    this.sendButton.addEventListener("click", this.handleSendClick.bind(this));
+    this.initializeButtons();
   }
 
   handleClearClick(event) {

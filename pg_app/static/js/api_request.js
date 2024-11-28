@@ -71,34 +71,29 @@ export class SelectionAPI extends AbstractAPI {
     code.innerHTML = html;
   }
 
-  static addBookToSelection(selection, bookId) {
-    const endpoint = `api/selection/${selection}/${bookId}`; // Utilise le numero de selection et l'ID du livre
-    fetch(endpoint, {
+  static async addBookToSelection(selectionId, bookId) {
+    const bookIdsArray = bookId.split(',');
+    const endpoint = `api/selection/${selectionId}`;
+    const response = await fetch(endpoint, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ selection, bookId })
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Échec du chargement de la ressource : le serveur a répondu avec un statut de ${response.status} (${response.statusText})`);
-      }
-      return response.json();
-    })
-    .then(data => {
-        const debugCard = document.querySelector(".add-book-to-selection");
-        let code = debugCard.querySelector(".aselection-cta");
-        code.innerHTML = `<p>Livre ${bookId} ajouté avec succès à la sélection ${selection}</p>`;
-        console.log('Succès :', data);
-    })
-    .catch(error => {
-      const debugCard = document.querySelector(".add-book-to-selection");
-      let code = debugCard.querySelector(".aselection-cta");
-      code.innerHTML = `<p>Erreur : ${error.message}</p>`; // Message d'erreur en français
-      console.error('Erreur détaillée :', error);
-  });
-}
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ "book_ids" : bookIdsArray})
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to add book: ${response.status} ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    const debugCard = document.querySelector(".add-book-to-selection");
+    const messageElement = debugCard.querySelector(".selection-cta");
+
+    if (result.success) {
+      messageElement.innerHTML = `<p>Book ${bookId} added to selection ${selectionId} successfully.</p>`;
+    } else {
+      messageElement.innerHTML = `<p>${result.message || 'Unknown error'}</p>`;
+    }
+  }
 
 
 }

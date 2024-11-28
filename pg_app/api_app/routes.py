@@ -84,7 +84,7 @@ def add_book_to_selection(selection_id: int):
     if not appartient_dao.add_books_to_selection(selection_id, book_ids):
         return jsonify({"error": "Failed to add book to selection"}), 400
 
-    return jsonify({"message": "Book added to successfully"}), 201
+    return jsonify({"message": "Book added successfully"}), 201
 
 
 def get_books_in_selection(selection):

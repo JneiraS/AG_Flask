@@ -1,4 +1,4 @@
-from pg_app import Livre
+from pg_app import Livre, AppartientDAO
 
 
 def book_to_dict(book) -> dict:
@@ -18,3 +18,9 @@ def find_book_by(attr, value):
     """Recherche un livre dans la liste des livres en fonction
      d'un attribut spécifique et de sa valeur."""
     return next((book for book in Livre.book_list if getattr(book, attr) == value), None)
+
+
+def get_books_in_selection(selection):
+    """Récupère la liste des livres associés à une sélection donnée."""
+    ap = AppartientDAO()
+    return ap.get_books_in_selection(selection)

@@ -29,7 +29,3 @@ class Authentication:
         Supprime l'objet Authentication.
         """
         del self
-
-
-auth = Authentication('DDpg2024')
-print(auth.hash_password())

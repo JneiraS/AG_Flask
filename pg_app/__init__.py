@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
-from flask import render_template  # Remove: import Flask
+from flask import render_template
 from flask_swagger_ui import get_swaggerui_blueprint
 
 from pg_app.src.models.editeur import Editeur
@@ -22,7 +22,7 @@ def create_app():
 
     # Configure Swagger UI
     swagger_url = "/api"
-    api_url = '/static/swagger.json'
+    api_url = "/static/swagger.json"
 
     swagger_blueprint = get_swaggerui_blueprint(
         swagger_url,

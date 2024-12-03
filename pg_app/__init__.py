@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import connexion
 from flask import Flask
-from flask import render_template  # Remove: import Flask
+from flask import render_template
+from flask_swagger_ui import get_swaggerui_blueprint
 
 from pg_app.src.models.editeur import Editeur
 from pg_app.src.models.livre import Livre
@@ -11,6 +11,8 @@ from . import member_app
 from .src.dao.appartient_dao import AppartientDAO
 from .src.models.livre import Livre
 
+INDEX_TEMPLATE = "index.html"
+
 
 def create_app():
     """
@@ -18,20 +20,28 @@ def create_app():
     """
     app = Flask(__name__)
 
+    # Configure Swagger UI
+    swagger_url = "/api"
+    api_url = "/static/swagger.json"
 
+    swagger_blueprint = get_swaggerui_blueprint(
+        swagger_url,
+        api_url,
+    )
     app.secret_key = "U2FsdGVkX1+H7ODzq10448prts5ZjZs0zYZyQwNzv2ClgXQH8hwXiZ8y4BRryyC3"
 
     initialize_database_in_threads()
     app.register_blueprint(auth_app.bp)
     app.register_blueprint(member_app.bp)
     app.register_blueprint(api_app.bp)
+    app.register_blueprint(swagger_blueprint, url_prefix=swagger_url)
 
     @app.route("/")
     def home():
         list_of_selected_books = Livre.book_list
         list_of_editors = Editeur.editor_list
         return render_template(
-            "index.html", livres=list_of_selected_books, editors=list_of_editors
+            INDEX_TEMPLATE, livres=list_of_selected_books, editors=list_of_editors
         )
 
     @app.route("/seconde-selection")
@@ -39,13 +49,17 @@ def create_app():
         appartient_dao = AppartientDAO()
         seconde_selection_list: list[Livre] = appartient_dao.get_books_in_selection(2)
 
-        return render_template("index.html", livres=seconde_selection_list)
+        return render_template(INDEX_TEMPLATE, livres=seconde_selection_list)
 
     @app.route("/troisieme-selection")
     def troisieme_selection():
         appartient_dao = AppartientDAO()
         troisieme_selection_list: list[Livre] = appartient_dao.get_books_in_selection(3)
 
-        return render_template("index.html", livres=troisieme_selection_list)
+        return render_template(INDEX_TEMPLATE, livres=troisieme_selection_list)
+
+    @app.route("/spa_api")
+    def spa_api():
+        return render_template("api.html")
 
     return app

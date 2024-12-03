@@ -63,7 +63,6 @@ class DatabaseConnectionManager(metaclass=SingletonMeta):
             )
             self.cursor = self.conn.cursor()
         else:
-            # TODO logger
             print("ERROR")
             # logger.error("Failed to read database configuration")
 

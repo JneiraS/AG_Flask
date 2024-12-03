@@ -29,13 +29,13 @@ class AppartientDAO(DatabaseConnectionManager):
         :param selection: l'identifiant de la selection
         :return:
         """
-        second_selection_list: list = []
+        selection_list: list = []
         results: list[dict] = self.get_selection(selection)
         for result in results:
             for book in Livre.book_list:
                 if result["id_livre"] == book.id:
-                    second_selection_list.append(book)
-        return second_selection_list
+                    selection_list.append(book)
+        return selection_list
 
     def insert_book_to_selection(self, id_livre: int, id_selection: int):
         """

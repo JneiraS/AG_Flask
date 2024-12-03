@@ -7,6 +7,7 @@ Ce fichier contient la classe Creator qui s'occupe de la creation d'objets.
 
 import concurrent.futures
 from abc import ABC, abstractmethod
+from slugify import slugify
 
 from pg_app.src.dao.auteurs_dao import AuteursDAO
 from pg_app.src.dao.base_dao import DatabaseConnectionManager
@@ -53,6 +54,7 @@ class LivresCreator(Creator):
         )
 
         livre._id = information_source["id_livre"]
+        livre.slug = slugify(information_source["titre"])
 
         return livre
 

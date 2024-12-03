@@ -13,3 +13,4 @@
 *.py~
 *.html~
 **/display
+/.diff.swp

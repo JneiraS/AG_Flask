@@ -1,0 +1,115 @@
+:root {
+  --font-color: rgb(69, 89, 116);
+  --font-color-darker: rgb(53, 75, 88);
+  --main-color: rgb(135, 185, 218);
+  --secondary-color: rgb(240, 252, 255);
+}
+
+
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  background-color:var(--secondary-color);
+  padding: 1em 5em;
+}
+
+ h1 , .book-element h2{
+ margin-bottom: .2em;
+ font-weight: 100;
+ color: var(--font-color-darker);
+}
+
+.boock-cta {
+  margin: 1em 0em;
+  background-color: var(--main-color);
+  padding: 1em 5em;
+  color : var(--font-color);
+  border-radius: 8px;
+  transition: all 2s;
+  border: 2px solid #ffffff;
+}
+
+
+.boock-cta h1{
+color :var(--font-color-darker);
+
+}
+
+input {
+  border: 1px solid var(--main-color);
+  margin-right: 1em;
+  color: var(--font-color-darker);
+  padding: 0.3em;
+  border-radius: 4px ;
+  
+}
+
+
+button,
+.button {
+    background-color: var(--main-color);
+    border: 1px solid var(--main-color);
+    color: var(--font-color-darker);
+    cursor: pointer;
+    font-size: 0.6em;
+    font-weight: bold;
+    margin: 0.3em 0;
+    padding: 0.6em 1.3em;
+    text-transform: uppercase;
+    min-width: 23ch;
+    border-radius: 4px ;
+}
+
+button:hover {
+    background-color: var(--bg-color);
+    color: var(--main-color);
+}
+
+.button {
+    background-color: transparent;
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--main-color);
+    color: var(--bg-color);
+}
+
+.book-selection h2 {
+  position: relative;
+}
+
+.book-element {
+ margin: .3em;
+ padding: 3em;
+transition: all 1.6s;
+
+border: 1px solid #ffffff81;
+background-color: var(--main-color);
+}
+
+.book-element:hover {
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
+  transition: transform 1.8s;
+  border-radius: 5px;
+}
+
+
+.book-element a, .boock-cta a{
+    color: var(--secondary-color);
+    background-color: var(--font-color-darker);
+    padding: 0.3em 1.3em;
+    text-transform: uppercase;
+        font-size: 0.7em;
+
+    border-radius: 4px ;
+}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}SPA{% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_sap.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>Book By Id or Title</h1>
+<div class="book-by-id-card">
+    <form class="debug-form" onsubmit="requestByTitleorId.handleSendClick(event)">
+        <input type="text" name="endpoint" value="" placeholder="Saisir l'ID ou le titre du livre" />
+        <button type="submit" data-action="read">Obtenir les données</button>
+        <button type="button" data-action="clear" onclick="requestByTitleorId.handleClearClick(event)">Effacer</button>
+    </form>
+
+    <div class="boock-cta"></div>
+</div>
+
+<h1>Selection</h1>
+<div class="book-selection">
+    <form class="debug-form" onsubmit="requestSelection.handleSendClick(event)">
+        <input type="text" name="endpoint" value="" placeholder="Entrer le numéro de sélection" />
+        <button type="submit" data-action="read">Obtenir les données</button>
+        <button type="button" data-action="clear" onclick="requestSelection.handleClearClick(event)">Effacer</button>
+    </form>
+
+    <div class="selection-cta"></div>
+</div>
+
+<h1>Add Book to Selection</h1>
+<div class="add-book-to-selection">
+    <form class="debug-form" method="post" onsubmit="requestAddBookToSelection.handleSendClick(event)">
+        <input type="text" name="selection_id" value="" placeholder="Numéro de sélection" />
+        <input id="book-id" type="text" name="book_id" value="" placeholder="Id du livre" />
+        <input id="user" type="password" name="book_id" value="" placeholder="Votre mot de passe"
+               autocomplete="current-password" />
+        <button type="submit" data-action="read">Ajouter le livre à la sélection</button>
+        <button type="button" data-action="clear" onclick="requestAddBookToSelection.handleClearClick(event)">Effacer</button>
+    </form>
+    <div class="selection-cta"></div>
+</div>
+{% endblock %}
